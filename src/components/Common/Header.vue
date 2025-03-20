@@ -1,5 +1,5 @@
 <template>
-  <div class="container flex align-items-center">
+  <div class="header-container flex align-items-center">
     <div class="left flex justify-content-center align-items-center">
       <el-button circle size="small" :icon="ArrowLeft" @click="goHome" />
     </div>
@@ -23,7 +23,7 @@ const goHome = () => {
 </script>
 
 <style scoped lang="scss">
-.container {
+.header-container {
   width: 100%;
   height: 50px;
   border-bottom: 1px solid var(--border-color);
