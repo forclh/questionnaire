@@ -16,8 +16,39 @@ const router = createRouter({
       path: '/materials',
       name: 'materials',
       component: () => import('@/views/MaterialsView/index.vue'),
+      children: [
+        {
+          path: 'selectGroup',
+          name: 'selectGroup',
+          component: () => import('@/views/MaterialsView/SelectGroupView.vue'),
+        },
+        {
+          path: 'inputGroup',
+          name: 'inputGroup',
+          component: () => import('@/views/MaterialsView/InputGroupView.vue'),
+        },
+        {
+          path: 'advancedGroup',
+          name: 'advancedGroup',
+          component: () => import('@/views/MaterialsView/AdvancedGroupView.vue'),
+        },
+        {
+          path: 'noteGroup',
+          name: 'noteGroup',
+          component: () => import('@/views/MaterialsView/NoteGroupView.vue'),
+        },
+        {
+          path: 'personalInfoGroup',
+          name: 'personalInfoGroup',
+          component: () => import('@/views/MaterialsView/PersonalInfoGroupView.vue'),
+        },
+        {
+          path: 'contactGroup',
+          name: 'contactGroup',
+          component: () => import('@/views/MaterialsView/ContactGroupView.vue'),
+        },
+      ],
     },
-
   ],
 })
 
