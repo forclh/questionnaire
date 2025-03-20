@@ -1,0 +1,24 @@
+// 组件样式
+
+.link-item {
+  display: block;
+  width: 80px;
+  height: 30px;
+  background-color: var(--background-color);
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-base);
+  text-decoration: none;
+  line-height: 30px;
+  color: var(--font-size-base);
+  user-select: none;
+}
+
+.link-item:hover {
+  background-color: var(--info-color);
+  color: var(--white)
+}
+
+.link-item-active {
+  background-color: var(--info-color);
+  color: var(--white)
+}

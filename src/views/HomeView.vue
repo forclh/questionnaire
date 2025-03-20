@@ -8,7 +8,7 @@
     </div>
     <!-- 问卷列表 -->
     <el-table :data="tableData" style="width: 100%" border>
-      <el-table-column fixed prop="createDate" label="创建日期" width="150" />
+      <el-table-column prop="createDate" label="创建日期" width="150" />
       <el-table-column prop="title" label="问卷标题" />
       <el-table-column prop="surveyCount" label="题目数" width="150" align="center" />
       <el-table-column prop="updateDate" label="最近更新日期" width="150" align="center" />
