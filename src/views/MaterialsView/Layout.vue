@@ -5,7 +5,9 @@
       <slot></slot>
     </div>
     <!-- 显示业务组件 -->
-    <div class="center">显示业务组件</div>
+    <div class="center">
+      <router-view></router-view>
+    </div>
     <!-- 业务组件编辑面板 -->
     <div class="right"></div>
   </div>
