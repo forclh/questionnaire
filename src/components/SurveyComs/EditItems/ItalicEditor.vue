@@ -1,0 +1,8 @@
+<!-- 字体倾斜编辑组件 -->
+<template>
+  <div>字体倾斜编辑组件</div>
+</template>
+
+<script setup lang="ts"></script>
+
+<style scoped></style>
