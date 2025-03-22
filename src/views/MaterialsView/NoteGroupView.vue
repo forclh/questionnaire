@@ -1,7 +1,11 @@
 <template>
-  <div>备注说明组视图</div>
+  <Layout>
+    <router-link class="link-item mb-15">备注说明</router-link>
+  </Layout>
 </template>
 
-<script setup></script>
+<script setup>
+import Layout from './Layout.vue';
+</script>
 
 <style lang="scss" scoped></style>

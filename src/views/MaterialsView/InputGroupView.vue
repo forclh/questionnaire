@@ -1,7 +1,11 @@
 <template>
-  <div>文本输入组视图</div>
+  <Layout>
+    <router-link class="link-item mb-15">文本输入</router-link>
+  </Layout>
 </template>
 
-<script setup></script>
+<script setup>
+import Layout from './Layout.vue';
+</script>
 
 <style lang="scss" scoped></style>
