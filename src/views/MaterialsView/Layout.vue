@@ -6,14 +6,26 @@
     </div>
     <!-- 显示业务组件 -->
     <div class="center">
-      <router-view></router-view>
+      <router-view v-slot="{ Component }">
+        <!-- 传递状态和序号 -->
+        <component :is="Component" :status="currentComStatus" :serialNum="1"></component>
+      </router-view>
     </div>
     <!-- 业务组件编辑面板 -->
     <div class="right"></div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useMaterialStore } from '@/stores/useMaterial.ts';
+import { computed } from 'vue';
+// 数据仓库
+const store = useMaterialStore();
+// 获取当前选中组件的状态数据
+const currentComStatus = computed(() => {
+return store.coms[store.currentMaterialCom].status;
+});
+</script>
 
 <style scoped lang="scss">
 .layout-container {
