@@ -6,7 +6,7 @@ import SingleSelect from "@/components/SurveyComs/Materials/SelectComs/SingleSel
 // 编辑组件
 import TitleEditor from '@/components/SurveyComs/EditItems/TitleEditor.vue'
 import DescEditor from "@/components/SurveyComs/EditItems/DescEditor.vue"
-import OptionsEditor from "@/components/SurveyComs/EditItems/OptionEditor.vue"
+import OptionsEditor from "@/components/SurveyComs/EditItems/OptionsEditor.vue"
 import PositionEditor from "@/components/SurveyComs/EditItems/PositionEditor.vue"
 import SizeEditor from "@/components/SurveyComs/EditItems/SizeEditor.vue"
 import WeightEditor from "@/components/SurveyComs/EditItems/WeightEditor.vue"
