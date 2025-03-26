@@ -13,3 +13,7 @@ export function getStringStatus(props: OptionsProps) {
 export function getCurrentStatus(props: OptionsProps) {
   return props.currentStatus
 }
+
+export function getStringStatusByCurrentStatus(props: OptionsProps) {
+  return props.status[props.currentStatus]
+}
