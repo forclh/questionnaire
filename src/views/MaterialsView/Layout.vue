@@ -68,6 +68,14 @@ const updateStatus = (configKey: string, payload?: string | number) => {
       }
       store.setPosition(currentComStatus.value[configKey], payload);
       break;
+    case 'titleSize':
+    case 'descSize':
+      if (typeof payload!== 'number') {
+        console.error('Invalid payload type for "titleSize or descSize". Expected number.');
+        return;
+      }
+      store.setSize(currentComStatus.value[configKey], payload);
+      break;
   }
 };
 // 向子孙提供更新状态的方法

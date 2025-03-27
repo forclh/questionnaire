@@ -42,5 +42,9 @@ export const useMaterialStore = defineStore('materialStore', {
     setPosition(optionsProps: OptionsProps, index: number) {
       optionsProps.currentStatus = index;
     },
+    // 修改尺寸
+    setSize(optionsProps: OptionsProps, size: number) {
+      optionsProps.currentStatus = size;
+    },
   },
 });
