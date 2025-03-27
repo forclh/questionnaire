@@ -9,7 +9,13 @@
     <!-- 选项 -->
     <div v-for="(_, index) in status" :key="index" class="flex align-items-center">
       <el-input v-model="optionsArr[index]" placeholder="选项" class="mt-5 mb-5 mr-10"></el-input>
-      <el-button type='danger' size="small" :icon="Minus" circle @click="removeOption(index)"></el-button>
+      <el-button
+        type="danger"
+        size="small"
+        :icon="Minus"
+        circle
+        @click="removeOption(index)"
+      ></el-button>
     </div>
   </div>
 </template>

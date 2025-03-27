@@ -10,15 +10,15 @@
   text-decoration: none;
   line-height: 30px;
   color: var(--font-size-base);
-  user-select: none;  // 无法选中文字内容
+  user-select: none; // 无法选中文字内容
 }
 
 .link-item:hover {
   background-color: var(--info-color);
-  color: var(--white)
+  color: var(--white);
 }
 
 .link-item-active {
   background-color: var(--info-color);
-  color: var(--white)
+  color: var(--white);
 }

@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -27,29 +27,34 @@ const router = createRouter({
             {
               path: 'singleSelect',
               name: 'singleSelect',
-              component: () => import('@/components/SurveyComs/Materials/SelectComs/SingleSelect.vue')
+              component: () =>
+                import('@/components/SurveyComs/Materials/SelectComs/SingleSelect.vue'),
             },
             {
               path: 'multiSelect',
               name: 'multiSelect',
-              component: () => import('@/components/SurveyComs/Materials/SelectComs/MultiSelect.vue')
+              component: () =>
+                import('@/components/SurveyComs/Materials/SelectComs/MultiSelect.vue'),
             },
             {
               path: 'optionSelect',
               name: 'optionSelect',
-              component: () => import('@/components/SurveyComs/Materials/SelectComs/OptionSelect.vue')
+              component: () =>
+                import('@/components/SurveyComs/Materials/SelectComs/OptionSelect.vue'),
             },
             {
               path: 'singlePicSelect',
               name: 'singlePicSelect',
-              component: () => import('@/components/SurveyComs/Materials/SelectComs/SingePicSelect.vue')
+              component: () =>
+                import('@/components/SurveyComs/Materials/SelectComs/SingePicSelect.vue'),
             },
             {
               path: 'multiPicSelect',
               name: 'multiPicSelect',
-              component: () => import('@/components/SurveyComs/Materials/SelectComs/MultiPicSelect.vue')
+              component: () =>
+                import('@/components/SurveyComs/Materials/SelectComs/MultiPicSelect.vue'),
             },
-          ]
+          ],
         },
         {
           path: 'inputGroup',
@@ -79,6 +84,6 @@ const router = createRouter({
       ],
     },
   ],
-})
+});
 
-export default router
+export default router;

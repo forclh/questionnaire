@@ -24,7 +24,6 @@ const title = ref(props.status);
 const updateStatus = inject(updateStatusKey)!;
 
 const inputHandle = (newVal: string) => {
-  updateStatus(props.configKey, newVal)
+  updateStatus(props.configKey, newVal);
 };
-
 </script>

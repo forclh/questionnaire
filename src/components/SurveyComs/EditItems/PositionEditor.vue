@@ -23,8 +23,8 @@ const props = defineProps<{
 }>();
 
 const updateStatus = inject(updateStatusKey)!;
-
-const changePositon = (pos: number) =>{
-  updateStatus(props.configKey, pos)
-}
+// 修改对齐方式
+const changePositon = (pos: number) => {
+  updateStatus(props.configKey, pos);
+};
 </script>

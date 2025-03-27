@@ -15,7 +15,6 @@
 </template>
 
 <script setup>
-
 defineProps({
   title: {
     type: String,
@@ -24,9 +23,8 @@ defineProps({
   status: {
     type: String,
     default: '',
-  }
-})
-
+  },
+});
 </script>
 
 <style scoped lang="scss">

@@ -1,11 +1,17 @@
 <!-- 公共的标题和描述 -->
 <template>
   <div class="materials-header-container mb-15">
-    <h2 class="font-weight-100" :style="{fontSize: `${titleSize}px`, color: titleColor}">
+    <h2 class="font-weight-100" :style="{ fontSize: `${titleSize}px`, color: titleColor }">
       <span class="mr-10">{{ serialNum }}.</span>
-      <span :class="{'font-bold': !titleWeight, 'font-italic': !titleItalic}">{{ title }}</span>
+      <span :class="{ 'font-bold': !titleWeight, 'font-italic': !titleItalic }">{{ title }}</span>
     </h2>
-    <div class="desc" :class="{'font-bold': !descWeight, 'font-italic': !descItalic}" :style="{fontSize: `${descSize}px`, color: descColor}">{{ desc }}</div>
+    <div
+      class="desc"
+      :class="{ 'font-bold': !descWeight, 'font-italic': !descItalic }"
+      :style="{ fontSize: `${descSize}px`, color: descColor }"
+    >
+      {{ desc }}
+    </div>
   </div>
 </template>
 

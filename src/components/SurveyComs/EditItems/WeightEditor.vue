@@ -29,7 +29,7 @@ const title = computed(() => {
 });
 // 更新状态方法
 const updateStatus = inject(updateStatusKey)!;
-// 改变尺寸
+// 改变字体粗细
 const changeWeight = (size: number) => {
   updateStatus(props.configKey, size);
 };

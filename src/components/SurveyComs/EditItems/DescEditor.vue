@@ -2,7 +2,13 @@
 <template>
   <div>
     <div class="mb-10">描述内容</div>
-    <el-input v-model="desc" @input="inputHandle" placeholder="请输入描述内容" :rows=5 type="textarea"></el-input>
+    <el-input
+      v-model="desc"
+      @input="inputHandle"
+      placeholder="请输入描述内容"
+      :rows="5"
+      type="textarea"
+    ></el-input>
   </div>
 </template>
 
@@ -17,7 +23,7 @@ const props = defineProps<{
   editCom: VueComType;
   configKey: string;
 }>();
-
+// 描述
 const desc = ref(props.status);
 const updateStatus = inject(updateStatusKey)!;
 
