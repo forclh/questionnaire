@@ -92,6 +92,14 @@ const updateStatus = (configKey: string, payload?: string | number) => {
       }
       store.setItalic(currentComStatus.value[configKey], payload);
       break;
+    case 'titleColor':
+    case 'descColor':
+      if (typeof payload !== 'string') {
+        console.error('Invalid payload type for "titleColor or descColor". Expected string.');
+        return;
+      }
+      store.setColor(currentComStatus.value[configKey], payload);
+      break;
   }
 };
 // 向子孙提供更新状态的方法

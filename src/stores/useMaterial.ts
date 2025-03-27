@@ -54,5 +54,10 @@ export const useMaterialStore = defineStore('materialStore', {
     setItalic(optionsProps: OptionsProps, size: number) {
       optionsProps.currentStatus = size;
     },
+    // 修改字体颜色
+    setColor(optionsProps: TextProps, color: string) {
+      optionsProps.status = color;
+      console.log(optionsProps.status);
+    },
   },
 });
