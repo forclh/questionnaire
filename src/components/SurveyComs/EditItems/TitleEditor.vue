@@ -9,6 +9,7 @@
 
 <script setup lang="ts">
 import type { VueComType } from '@/types';
+import { updateStatusKey } from '@/types/key.ts';
 import { ref, inject } from 'vue';
 const props = defineProps<{
   id: string;
@@ -19,8 +20,8 @@ const props = defineProps<{
 }>();
 
 const text = ref(props.status);
-// 获取祖先组件传过来的方法
-const updateStatus = inject('updateStatus');
+// 注入祖先组件传过来的方法(增加非空断言)
+const updateStatus = inject(updateStatusKey)!;
 
 const inputHandle = (newVal: string) => {
   updateStatus(props.configKey, newVal)

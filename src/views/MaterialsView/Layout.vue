@@ -22,6 +22,7 @@
 import EditPanel from '@/components/SurveyComs/EditItems/EditPanel.vue';
 import { useMaterialStore } from '@/stores/useMaterial.ts';
 import { computed, provide } from 'vue';
+import { updateStatusKey } from '@/types/key.ts';
 // 数据仓库
 const store = useMaterialStore();
 // 获取当前选中组件的状态数据
@@ -46,8 +47,8 @@ const updateStatus = (configKey: string, payload: string) => {
       }
   }
 };
-
-provide('updateStatus', updateStatus);
+// 向子孙提供更新状态的方法
+provide(updateStatusKey, updateStatus);
 </script>
 
 <style scoped lang="scss">
