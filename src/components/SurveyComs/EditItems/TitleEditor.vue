@@ -3,7 +3,7 @@
   <!-- TODO -->
   <div>
     <div class="mb-10">标题内容</div>
-    <el-input v-model="text" @input="inputHandle"></el-input>
+    <el-input placehoulder="请输入标题内容" v-model="title" @input="inputHandle"></el-input>
   </div>
 </template>
 
@@ -19,7 +19,7 @@ const props = defineProps<{
   configKey: string;
 }>();
 
-const text = ref(props.status);
+const title = ref(props.status);
 // 注入祖先组件传过来的方法(增加非空断言)
 const updateStatus = inject(updateStatusKey)!;
 
@@ -28,5 +28,3 @@ const inputHandle = (newVal: string) => {
 };
 
 </script>
-
-<style scoped></style>
