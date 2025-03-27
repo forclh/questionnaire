@@ -15,6 +15,8 @@ import ColorEditor from "@/components/SurveyComs/EditItems/ColorEditor.vue"
 
 import { v4 as uuidV4 } from 'uuid'
 
+import {markRaw} from 'vue'
+
 // 不能导出对象，否则会导致多个业务组件共同一个数据状态
 export default function () {
   return {
@@ -28,14 +30,14 @@ export default function () {
         status: '单选默认标题',
         isShow: true, // 是否显示该组件
         name: 'titleEditor',
-        editCom: TitleEditor
+        editCom: markRaw(TitleEditor)
       },
       desc: {
         id: uuidV4(),
         status: '单选默认描述',
         isShow: true,
         name: 'descEditor',
-        editCom: DescEditor
+        editCom: markRaw(DescEditor)
       },
       options: {
         id: uuidV4(),
@@ -43,7 +45,7 @@ export default function () {
         currentStatus: 0,  // 当前选项的下标
         isShow: true,
         name: 'optionsEditor',
-        editCom: OptionsEditor
+        editCom: markRaw(OptionsEditor)
       },
       position: {
         id: uuidV4(),
@@ -51,7 +53,7 @@ export default function () {
         currentStatus: 0,
         isShow: true,
         name: 'positionEditor',
-        editCom: PositionEditor
+        editCom: markRaw(PositionEditor)
       },
       titleSize: {
         id: uuidV4(),
@@ -59,7 +61,7 @@ export default function () {
         currentStatus: 0,
         isShow: true,
         name: 'sizeEditor',
-        editCom: SizeEditor
+        editCom: markRaw(SizeEditor)
       },
       descSize: {
         id: uuidV4(),
@@ -67,7 +69,7 @@ export default function () {
         currentStatus: 0,
         isShow: true,
         name: 'sizeEditor',
-        editCom: SizeEditor
+        editCom: markRaw(SizeEditor)
       },
       titleWeight: {
         id: uuidV4(),
@@ -75,7 +77,7 @@ export default function () {
         currentStatus: 0,
         isShow: true,
         name: 'weightEditor',
-        editCom: WeightEditor
+        editCom: markRaw(WeightEditor)
       },
       descWeight: {
         id: uuidV4(),
@@ -83,7 +85,7 @@ export default function () {
         currentStatus: 0,
         isShow: true,
         name: 'weightEditor',
-        editCom: WeightEditor
+        editCom: markRaw(WeightEditor)
       },
       titleItalic: {
         id: uuidV4(),
@@ -91,7 +93,7 @@ export default function () {
         currentStatus: 0,
         isShow: true,
         name: 'italicEditor',
-        editCom: ItalicEditor
+        editCom: markRaw(ItalicEditor)
       },
       descItalic: {
         id: uuidV4(),
@@ -99,21 +101,21 @@ export default function () {
         currentStatus: 0,
         isShow: true,
         name: 'italicEditor',
-        editCom: ItalicEditor
+        editCom: markRaw(ItalicEditor)
       },
       titleColor: {
         id: uuidV4(),
         status: '#000',
         isShow: true,
         name: 'colorEditor',
-        editCom: ColorEditor
+        editCom: markRaw(ColorEditor)
       },
       descColor: {
         id: uuidV4(),
         status: '#000',
         isShow: true,
         name: 'colorEditor',
-        editCom: ColorEditor
+        editCom: markRaw(ColorEditor)
       }
     }
   }
