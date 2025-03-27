@@ -70,7 +70,7 @@ const updateStatus = (configKey: string, payload?: string | number) => {
       break;
     case 'titleSize':
     case 'descSize':
-      if (typeof payload!== 'number') {
+      if (typeof payload !== 'number') {
         console.error('Invalid payload type for "titleSize or descSize". Expected number.');
         return;
       }
@@ -78,11 +78,19 @@ const updateStatus = (configKey: string, payload?: string | number) => {
       break;
     case 'titleWeight':
     case 'descWeight':
-      if (typeof payload!== 'number') {
+      if (typeof payload !== 'number') {
         console.error('Invalid payload type for "titleWeight or descWeight". Expected number.');
         return;
       }
       store.setWeight(currentComStatus.value[configKey], payload);
+      break;
+    case 'titleItalic':
+    case 'descItalic':
+      if (typeof payload !== 'number') {
+        console.error('Invalid payload type for "titleItalic or descItalic". Expected number.');
+        return;
+      }
+      store.setItalic(currentComStatus.value[configKey], payload);
       break;
   }
 };

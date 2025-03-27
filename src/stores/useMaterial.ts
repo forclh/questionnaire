@@ -50,5 +50,9 @@ export const useMaterialStore = defineStore('materialStore', {
     setWeight(optionsProps: OptionsProps, size: number) {
       optionsProps.currentStatus = size;
     },
+    // 修改字体倾斜
+    setItalic(optionsProps: OptionsProps, size: number) {
+      optionsProps.currentStatus = size;
+    },
   },
 });
