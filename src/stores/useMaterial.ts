@@ -46,5 +46,9 @@ export const useMaterialStore = defineStore('materialStore', {
     setSize(optionsProps: OptionsProps, size: number) {
       optionsProps.currentStatus = size;
     },
+    // 修改字体粗细
+    setWeight(optionsProps: OptionsProps, size: number) {
+      optionsProps.currentStatus = size;
+    },
   },
 });

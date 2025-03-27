@@ -76,6 +76,14 @@ const updateStatus = (configKey: string, payload?: string | number) => {
       }
       store.setSize(currentComStatus.value[configKey], payload);
       break;
+    case 'titleWeight':
+    case 'descWeight':
+      if (typeof payload!== 'number') {
+        console.error('Invalid payload type for "titleWeight or descWeight". Expected number.');
+        return;
+      }
+      store.setWeight(currentComStatus.value[configKey], payload);
+      break;
   }
 };
 // 向子孙提供更新状态的方法
