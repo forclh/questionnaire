@@ -12,18 +12,26 @@
       </router-view>
     </div>
     <!-- 业务组件编辑面板 -->
-    <div class="right"></div>
+    <div class="right">
+      <EditPanel :currentCom />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import EditPanel from '@/components/SurveyComs/EditItems/EditPanel.vue';
 import { useMaterialStore } from '@/stores/useMaterial.ts';
 import { computed } from 'vue';
 // 数据仓库
 const store = useMaterialStore();
 // 获取当前选中组件的状态数据
 const currentComStatus = computed(() => {
-return store.coms[store.currentMaterialCom].status;
+  // 使用类型断言确保访问status属性
+  return store.coms[store.currentMaterialCom].status;
+});
+// 获取当前选中的组件
+const currentCom = computed(() => {
+  return store.coms[store.currentMaterialCom];
 });
 </script>
 
