@@ -74,7 +74,7 @@ export default function () {
       titleWeight: {
         id: uuidV4(),
         status: ['加粗', '正常'],
-        currentStatus: 0,
+        currentStatus: 1,
         isShow: true,
         name: 'weightEditor',
         editCom: markRaw(WeightEditor)
@@ -82,7 +82,7 @@ export default function () {
       descWeight: {
         id: uuidV4(),
         status: ['加粗', '正常'],
-        currentStatus: 0,
+        currentStatus: 1,
         isShow: true,
         name: 'weightEditor',
         editCom: markRaw(WeightEditor)
@@ -90,7 +90,7 @@ export default function () {
       titleItalic: {
         id: uuidV4(),
         status: ['斜体', '正常'],
-        currentStatus: 0,
+        currentStatus: 1,
         isShow: true,
         name: 'italicEditor',
         editCom: markRaw(ItalicEditor)
@@ -98,7 +98,7 @@ export default function () {
       descItalic: {
         id: uuidV4(),
         status: ['斜体', '正常'],
-        currentStatus: 0,
+        currentStatus: 1,
         isShow: true,
         name: 'italicEditor',
         editCom: markRaw(ItalicEditor)

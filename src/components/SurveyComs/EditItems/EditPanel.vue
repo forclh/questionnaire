@@ -3,7 +3,7 @@
   <div class="edit-panel-container">
     <!-- 对象遍历，key为键 -->
     <div v-for="(item, key) in currentCom.status" :key="item.id" class="mb-20">
-      <!-- configKey的作用： -->
+      <!-- configKey的作用：组件内容更新props需要知道是哪一个编辑组件-->
       <component :is="item.editCom" v-if="item.isShow" :configKey="key" v-bind="item"/>
     </div>
   </div>

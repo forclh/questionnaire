@@ -21,7 +21,7 @@
 <script setup lang="ts">
 import EditPanel from '@/components/SurveyComs/EditItems/EditPanel.vue';
 import { useMaterialStore } from '@/stores/useMaterial.ts';
-import { computed } from 'vue';
+import { computed, provide } from 'vue';
 // 数据仓库
 const store = useMaterialStore();
 // 获取当前选中组件的状态数据
@@ -33,6 +33,21 @@ const currentComStatus = computed(() => {
 const currentCom = computed(() => {
   return store.coms[store.currentMaterialCom];
 });
+// 向子孙提供更新状态的方法 TODO
+const updateStatus = (configKey: string, payload: string) => {
+  // 修改数据仓库
+  switch (configKey) {
+    case 'title':
+    case 'desc':
+      if (typeof payload !== 'string') {
+        console.log('Invalid payload type for "tile or desc". Expected string.');
+      } else {
+        store.setTestStatus(currentComStatus.value[configKey], payload);
+      }
+  }
+};
+
+provide('updateStatus', updateStatus);
 </script>
 
 <style scoped lang="scss">
