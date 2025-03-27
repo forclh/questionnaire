@@ -61,6 +61,13 @@ const updateStatus = (configKey: string, payload?: string | number) => {
         store.addOption(currentComStatus.value[configKey]);
       }
       break;
+    case 'position':
+      if (typeof payload !== 'number') {
+        console.error('Invalid payload type for "position". Expected number.');
+        return;
+      }
+      store.setPosition(currentComStatus.value[configKey], payload);
+      break;
   }
 };
 // 向子孙提供更新状态的方法

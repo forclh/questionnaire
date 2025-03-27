@@ -38,5 +38,9 @@ export const useMaterialStore = defineStore('materialStore', {
       }
       return true;
     },
+    // 修改对齐方式
+    setPosition(optionsProps: OptionsProps, index: number) {
+      optionsProps.currentStatus = index;
+    },
   },
 });
