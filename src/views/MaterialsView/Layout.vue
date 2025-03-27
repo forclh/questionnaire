@@ -23,6 +23,7 @@ import EditPanel from '@/components/SurveyComs/EditItems/EditPanel.vue';
 import { useMaterialStore } from '@/stores/useMaterial.ts';
 import { computed, provide } from 'vue';
 import { updateStatusKey } from '@/types/key.ts';
+import { ElMessage } from 'element-plus';
 // 数据仓库
 const store = useMaterialStore();
 // 获取当前选中组件的状态数据
@@ -35,16 +36,31 @@ const currentCom = computed(() => {
   return store.coms[store.currentMaterialCom];
 });
 // 向子孙提供更新状态的方法 TODO
-const updateStatus = (configKey: string, payload: string) => {
+const updateStatus = (configKey: string, payload?: string | number) => {
   // 修改数据仓库
   switch (configKey) {
     case 'title':
     case 'desc':
       if (typeof payload !== 'string') {
-        console.log('Invalid payload type for "tile or desc". Expected string.');
-      } else {
-        store.setTestStatus(currentComStatus.value[configKey], payload);
+        console.error('Invalid payload type for "tile or desc". Expected string.');
+        return;
       }
+      store.setTestStatus(currentComStatus.value[configKey], payload);
+      break;
+    case 'options':
+      if (typeof payload === 'number') {
+        // 删除选项
+        const result = store.removeOption(currentComStatus.value[configKey], payload);
+        if (result) {
+          ElMessage.success('删除成功');
+        } else {
+          ElMessage.error('至少保留两个选项');
+        }
+      } else {
+        // 添加选项
+        store.addOption(currentComStatus.value[configKey]);
+      }
+      break;
   }
 };
 // 向子孙提供更新状态的方法

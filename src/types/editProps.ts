@@ -12,14 +12,15 @@ export interface BaseProps {
 export type StringStatusArr = Array<string>;
 export type ValueStatusArr = Array<{ value: string, status: string }>;
 export type PicTitleDescStatusArr = Array<{ picTitle: string, picDesc: string, value: String }>;
+// 选项数组的三种情况
+export type OptionStatusArr = StringStatusArr | ValueStatusArr | PicTitleDescStatusArr;
 
 export interface TextProps extends BaseProps {
   status: string
 }
 
-// status为数组的情况（三种）
 export interface OptionsProps extends BaseProps {
-  status: StringStatusArr | ValueStatusArr | PicTitleDescStatusArr
+  status: OptionStatusArr
   currentStatus: number
 }
 
@@ -42,4 +43,9 @@ export interface BaseStatus {
 
 export interface OptionsStatus extends BaseStatus {
   options: OptionsProps
+}
+
+// 通过类型守卫判断status是否为string[]
+export function isStringArr(status: OptionStatusArr): status is StringStatusArr {
+  return Array.isArray(status) && status.length > 0 && typeof status[0] === 'string';
 }
