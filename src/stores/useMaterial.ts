@@ -10,6 +10,7 @@ export const useMaterialStore = defineStore('materialStore', {
     // 记录所有的业务组件
     coms: {
       singleSelect: defaultStatusMap['singleSelect'](),
+      singlePicSelect: defaultStatusMap['singlePicSelect'](),
     } as Record<string, SchemaType>,
   }),
 
@@ -58,6 +59,10 @@ export const useMaterialStore = defineStore('materialStore', {
     setColor(optionsProps: TextProps, color: string) {
       optionsProps.status = color;
       console.log(optionsProps.status);
+    },
+    // 设置当前选中的业务组件
+    setCurrentMaterialCom(com: string) {
+      this.currentMaterialCom = com;
     },
   },
 });
