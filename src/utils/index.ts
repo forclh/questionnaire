@@ -1,5 +1,6 @@
 // 工具库
 
+import { isStringArr } from '@/types';
 import type { TextProps, OptionsProps } from '@/types';
 
 export function getTextStatus(props: TextProps) {
@@ -15,5 +16,7 @@ export function getCurrentStatus(props: OptionsProps) {
 }
 
 export function getStringStatusByCurrentStatus(props: OptionsProps) {
-  return props.status[props.currentStatus];
+  if (props && isStringArr(props.status)) {
+    return props.status[props.currentStatus];
+  }
 }
