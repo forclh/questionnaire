@@ -1,6 +1,6 @@
 // 工具库
 
-import { isStringArr } from '@/types';
+import { isStringArr, isPicTitleDescStatusArr, isValueStatusArr } from '@/types';
 import type { TextProps, OptionsProps } from '@/types';
 
 export function getTextStatus(props: TextProps) {
@@ -8,7 +8,21 @@ export function getTextStatus(props: TextProps) {
 }
 
 export function getStringStatus(props: OptionsProps) {
-  return props.status;
+  if (props && isStringArr(props.status)) {
+    return props.status;
+  }
+}
+
+export function getPicTitleDescStatusArr(props: OptionsProps) {
+  if (props && isPicTitleDescStatusArr(props.status)) {
+    return props.status;
+  }
+}
+
+export function getValueStatusArr(props: OptionsProps) {
+  if (props && isValueStatusArr(props.status)) {
+    return props.status;
+  }
 }
 
 export function getCurrentStatus(props: OptionsProps) {

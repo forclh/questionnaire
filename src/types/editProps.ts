@@ -10,7 +10,7 @@ export interface BaseProps {
 
 export type StringStatusArr = Array<string>;
 export type ValueStatusArr = Array<{ value: string; status: string }>;
-export type PicTitleDescStatusArr = Array<{ picTitle: string; picDesc: string; value: String }>;
+export type PicTitleDescStatusArr = Array<{ picTitle: string; picDesc: string; value: string }>;
 // 选项数组的三种情况
 export type OptionStatusArr = StringStatusArr | ValueStatusArr | PicTitleDescStatusArr;
 
@@ -43,7 +43,28 @@ export interface OptionsStatus extends BaseStatus {
   options: OptionsProps;
 }
 
-// 通过类型守卫判断status是否为string[]
+// 判断status是否为string[]
 export function isStringArr(status: OptionStatusArr): status is StringStatusArr {
   return Array.isArray(status) && status.length > 0 && typeof status[0] === 'string';
+}
+
+// 判断status是否为{value: string, status: string}[]
+export function isValueStatusArr(status: OptionStatusArr): status is ValueStatusArr {
+  return (
+    Array.isArray(status) &&
+    typeof status[0] === 'object' &&
+    'value' in status[0] &&
+    'status' in status[0]
+  );
+}
+
+// 判断status是否为{picTitle: string, picDesc: string, value: string}[]
+export function isPicTitleDescStatusArr(status: OptionStatusArr): status is PicTitleDescStatusArr {
+  return (
+    Array.isArray(status) &&
+    typeof status[0] === 'object' &&
+    'picTitle' in status[0] &&
+    'picDesc' in status[0] &&
+    'value' in status[0]
+  );
 }
