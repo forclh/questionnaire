@@ -23,7 +23,7 @@
           :value="item.value"
           class="picOption flex mb-15"
         >
-          <PicItem v-bind="item"/>
+          <PicItem v-bind="{...item, index}"/>
         </el-radio>
       </el-radio-group>
     </div>

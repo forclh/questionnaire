@@ -24,6 +24,7 @@ import { useMaterialStore } from '@/stores/useMaterial.ts';
 import { computed, provide } from 'vue';
 import { updateStatusKey } from '@/types/key.ts';
 import { ElMessage } from 'element-plus';
+import { isPicLink } from '@/types';
 // 数据仓库
 const store = useMaterialStore();
 // 获取当前选中组件的状态数据
@@ -35,8 +36,8 @@ const currentComStatus = computed(() => {
 const currentCom = computed(() => {
   return store.coms[store.currentMaterialCom];
 });
-// 向子孙提供更新状态的方法 TODO
-const updateStatus = (configKey: string, payload?: string | number) => {
+// 向子孙提供更新状态的方法
+const updateStatus = (configKey: string, payload?: string | number | object) => {
   // 修改数据仓库
   switch (configKey) {
     case 'title':
@@ -56,6 +57,10 @@ const updateStatus = (configKey: string, payload?: string | number) => {
         } else {
           ElMessage.error('至少保留两个选项');
         }
+        // object类型的payload为图片组件的修改
+      } else if (typeof payload === 'object' && isPicLink(payload)) {
+        // 修改图片链接
+        store.setPicLinkByIndex(currentComStatus.value[configKey], payload);
       } else {
         // 添加选项
         store.addOption(currentComStatus.value[configKey]);

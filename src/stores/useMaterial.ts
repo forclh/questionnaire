@@ -1,8 +1,8 @@
 // 组件市场中所有组件的状态仓库
 import { defineStore } from 'pinia';
 import { defaultStatusMap } from '@/config/defaultStatus/defaultStatusMap.ts';
-import type { SchemaType, TextProps, OptionsProps } from '@/types';
-import { isStringArr } from '@/types';
+import type { SchemaType, TextProps, OptionsProps, PicLink } from '@/types';
+import { isStringArr, isPicTitleDescStatusArr } from '@/types';
 export const useMaterialStore = defineStore('materialStore', {
   state: () => ({
     // 当前选中的业务组件
@@ -63,6 +63,12 @@ export const useMaterialStore = defineStore('materialStore', {
     // 设置当前选中的业务组件
     setCurrentMaterialCom(com: string) {
       this.currentMaterialCom = com;
+    },
+    // 设置图片组件的value
+    setPicLinkByIndex(optionsProps: OptionsProps, payload: PicLink) {
+      if (isPicTitleDescStatusArr(optionsProps.status)) {
+        optionsProps.status[payload.index].value = payload.link;
+      }
     },
   },
 });
