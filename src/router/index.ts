@@ -1,3 +1,4 @@
+import { useMaterialStore } from '@/stores/useMaterial';
 import { createRouter, createWebHistory } from 'vue-router';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -46,7 +47,7 @@ const router = createRouter({
               path: 'singlePicSelect',
               name: 'singlePicSelect',
               component: () =>
-                import('@/components/SurveyComs/Materials/SelectComs/SingePicSelect.vue'),
+                import('@/components/SurveyComs/Materials/SelectComs/SinglePicSelect.vue'),
             },
             {
               path: 'multiPicSelect',
@@ -84,6 +85,16 @@ const router = createRouter({
       ],
     },
   ],
+});
+
+// 路由守卫
+router.beforeEach((to, from, next) => {
+  const activeView = localStorage.getItem('activeView');
+  const store = useMaterialStore();
+  if (activeView === 'materials' && to.name) {
+    store.setCurrentMaterialCom(to.name as string)
+  }
+  next();
 });
 
 export default router;

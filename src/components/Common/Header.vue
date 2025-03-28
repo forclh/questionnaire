@@ -18,6 +18,7 @@ import avatar from '@/assets/img/avatar.jpg';
 const router = useRouter();
 
 const goHome = () => {
+  localStorage.setItem('activeView', 'home');
   router.push('/');
 };
 </script>
