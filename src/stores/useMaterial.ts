@@ -21,11 +21,22 @@ export const useMaterialStore = defineStore('materialStore', {
     },
     // 增加选项操作
     addOption(optionsProps: OptionsProps) {
+      // 普通单选
       if (isStringArr(optionsProps.status)) {
         const lastItem = optionsProps.status[optionsProps.status.length - 1];
         const match = lastItem.match(/(\d+)/);
         const newIndex = match ? parseInt(match[0]) + 1 : 1;
         optionsProps.status.push(`新增选项${newIndex}`);
+      } else if (isPicTitleDescStatusArr(optionsProps.status)) {
+        // 图片单选
+        const lastItem = optionsProps.status[optionsProps.status.length - 1];
+        const match = lastItem.picTitle.match(/(\d+)/);
+        const newIndex = match ? parseInt(match[0]) + 1 : 1;
+        optionsProps.status.push({
+          picTitle: `图片标题${newIndex}`,
+          picDesc: `图片描述${newIndex}`,
+          value: '',
+        });
       }
     },
     // 删除选项操作
@@ -34,9 +45,7 @@ export const useMaterialStore = defineStore('materialStore', {
       if (optionsProps.status.length <= 2) {
         return false;
       }
-      if (isStringArr(optionsProps.status)) {
-        optionsProps.status.splice(index, 1);
-      }
+      optionsProps.status.splice(index, 1);
       return true;
     },
     // 修改对齐方式
