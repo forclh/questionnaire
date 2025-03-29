@@ -47,6 +47,18 @@ SingleSelect组件传递titleSize和descSize时，需要将数字类型转换为
 />
 ```
 
+解决：
+
+增加类型守护
+
+```ts
+export function getStringStatusByCurrentStatus(props: OptionsProps) {
+  if (props && isStringArr(props.status)) {
+    return props.status[props.currentStatus];
+  }
+}
+```
+
 ## 2025-03-27
 
 问题1：
@@ -62,3 +74,32 @@ switch-case语句由于没有break，导致的类型推断问题
 知识点：
 
 1. ts中的类型守卫
+
+## 2025-03-28
+
+场景：
+再路由守卫中，进行数据仓库当前组件的设置时，需要判断是否为组件市场，因为只有组件市场需要设置。
+
+1. 首页进行调整是再localStorage存储激活的页面是组件市场还是编辑器，在路由守卫中进行判断
+2. 在路由守卫中更具路由的path进行判断
+
+```ts
+// 路由守卫
+router.beforeEach((to, from, next) => {
+  // 判断是否为组件市场，因为只有组件市场需要记录当前的组件
+  // 如果路由包含/materials则为组件市场
+  if (to.path.includes('/materials')) {
+    console.log(to.name);
+  }
+  next();
+});
+
+场景：
+拿到图片上传接口返回的url地址时候，为什么要使用blob的方式？不直接给src赋值？
+
+
+## 2025-03-29
+问题：
+图片单选组件在flex布局下，只有两个选项的时候justify-content不生效
+解决：
+父容器由子元素撑开，由于只有两个子元素的时候没有占满宽度，导致样式不生效。因此需要设置父元素的宽度为100%。
