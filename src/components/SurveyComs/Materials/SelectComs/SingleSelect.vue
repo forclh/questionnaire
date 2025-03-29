@@ -16,7 +16,7 @@
       :descColor="computedStatus.descColor"
     />
     <div class="radio-group">
-      <el-radio-group>
+      <el-radio-group v-model="radioValue">
         <el-radio v-for="(item, index) in computedStatus.options" :key="index" :value="item">{{
           item
         }}</el-radio>
@@ -26,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import MaterialsHeader from '@/components/SurveyComs/Common/MaterialsHeader.vue';
 import type { OptionsStatus } from '@/types/index.ts';
 import {
@@ -55,6 +55,8 @@ const computedStatus = computed(() => ({
   titleColor: getTextStatus(props.status.titleColor),
   descColor: getTextStatus(props.status.descColor),
 }));
+
+const radioValue = ref('');
 </script>
 
 <style scoped></style>

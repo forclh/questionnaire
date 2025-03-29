@@ -20,7 +20,7 @@
         <el-radio
           v-for="(item, index) in computedStatus.options"
           :key="index"
-          :value="item.value"
+          :value="item.picTitle"
           class="picOption flex mb-15"
         >
           <PicItem v-bind="{...item, index}"/>
