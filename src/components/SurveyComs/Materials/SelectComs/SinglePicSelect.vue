@@ -69,7 +69,7 @@ const radioValue = ref('');
 .picOption {
   height: auto;
   flex-direction: column-reverse;
-  margin-right: 0;  // 覆盖el-radio的默认样式
+  margin-right: 0;  /* 覆盖el-radio的默认样式 */
 }
 
 .radio-group {
