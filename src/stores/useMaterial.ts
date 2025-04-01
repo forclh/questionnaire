@@ -12,6 +12,7 @@ export const useMaterialStore = defineStore('materialStore', {
       singleSelect: defaultStatusMap['singleSelect'](),
       multiSelect: defaultStatusMap['multiSelect'](),
       singlePicSelect: defaultStatusMap['singlePicSelect'](),
+      optionSelect: defaultStatusMap['optionSelect'](),
     } as Record<string, SchemaType>,
   }),
 
