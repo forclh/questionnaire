@@ -1,6 +1,11 @@
 <template>
   <Layout>
-    <router-link class="link-item mb-15">文本输入</router-link>
+    <router-link
+      class="link-item mb-15"
+      exact-active-class="link-item-active"
+      :to="{ name: 'textInput' }"
+      >文本输入</router-link
+    >
   </Layout>
 </template>
 

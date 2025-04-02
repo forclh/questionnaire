@@ -105,6 +105,12 @@ const updateStatus = (configKey: string, payload?: string | number | object) => 
       }
       store.setColor(currentComStatus.value[configKey], payload);
       break;
+    case 'type':
+      if (typeof payload !== 'number') {
+        console.error('Invalid payload type for "type". Expected number.');
+        return;
+      }
+      store.setType(currentComStatus.value[configKey], payload);
   }
 };
 // 向子孙提供更新状态的方法

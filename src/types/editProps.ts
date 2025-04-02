@@ -43,6 +43,10 @@ export interface OptionsStatus extends BaseStatus {
   options: OptionsProps;
 }
 
+export interface TypeStatus extends BaseStatus {
+  type: OptionsProps;
+}
+
 // 判断status是否为string[]
 export function isStringArr(status: OptionStatusArr): status is StringStatusArr {
   return Array.isArray(status) && status.length > 0 && typeof status[0] === 'string';
@@ -69,7 +73,7 @@ export function isPicTitleDescStatusArr(status: OptionStatusArr): status is PicT
   );
 }
 
-export type PicLink = {index: number, link: string}
+export type PicLink = { index: number; link: string };
 export function isPicLink(obj: object): obj is PicLink {
   return 'index' in obj && 'link' in obj;
 }

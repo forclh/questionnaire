@@ -9,11 +9,14 @@ export const useMaterialStore = defineStore('materialStore', {
     currentMaterialCom: 'singleSelect',
     // 记录所有的业务组件
     coms: {
+      // 选择组件
       singleSelect: defaultStatusMap['singleSelect'](),
       multiSelect: defaultStatusMap['multiSelect'](),
       singlePicSelect: defaultStatusMap['singlePicSelect'](),
       multiPicSelect: defaultStatusMap['multiPicSelect'](),
       optionSelect: defaultStatusMap['optionSelect'](),
+      // 文本输入组件
+      textInput: defaultStatusMap['textInput'](),
     } as Record<string, SchemaType>,
   }),
 
@@ -81,6 +84,10 @@ export const useMaterialStore = defineStore('materialStore', {
       if (isPicTitleDescStatusArr(optionsProps.status)) {
         optionsProps.status[payload.index].value = payload.link;
       }
+    },
+    // 设置组件类型
+    setType(optionsProps: OptionsProps, type: number) {
+      optionsProps.currentStatus = type;
     },
   },
 });
