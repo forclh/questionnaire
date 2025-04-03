@@ -22,12 +22,12 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import MaterialsHeader from '@/components/SurveyComs/Common/MaterialsHeader.vue';
-import type { OptionsStatus } from '@/types/index.ts';
+import type { TypeStatus } from '@/types/index.ts';
 import { getTextStatus, getCurrentStatus, getStringStatusByCurrentStatus } from '@/utils/index.ts';
 
 const props = defineProps<{
   serialNum: number;
-  status: OptionsStatus;
+  status: TypeStatus;
 }>();
 
 const computedStatus = computed(() => ({

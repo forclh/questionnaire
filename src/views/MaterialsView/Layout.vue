@@ -25,8 +25,9 @@ import { computed, provide } from 'vue';
 import { updateStatusKey } from '@/types/key.ts';
 import { ElMessage } from 'element-plus';
 import { isPicLink } from '@/types';
+import type { PicLink, MaterialStore } from '@/types';
 // 数据仓库
-const store = useMaterialStore();
+const store = useMaterialStore() as unknown as MaterialStore;
 // 获取当前选中组件的状态数据
 const currentComStatus = computed(() => {
   // 使用类型断言确保访问status属性
@@ -37,7 +38,7 @@ const currentCom = computed(() => {
   return store.coms[store.currentMaterialCom];
 });
 // 向子孙提供更新状态的方法
-const updateStatus = (configKey: string, payload?: string | number | object) => {
+const updateStatus = (configKey: string, payload?: string | number | PicLink) => {
   // 修改数据仓库
   switch (configKey) {
     case 'title':
@@ -46,7 +47,7 @@ const updateStatus = (configKey: string, payload?: string | number | object) => 
         console.error('Invalid payload type for "tile or desc". Expected string.');
         return;
       }
-      store.setTestStatus(currentComStatus.value[configKey], payload);
+      store.setTextStatus(currentComStatus.value[configKey], payload);
       break;
     case 'options':
       if (typeof payload === 'number') {

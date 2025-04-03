@@ -1,7 +1,7 @@
 // 组件市场中所有组件的状态仓库
 import { defineStore } from 'pinia';
 import { defaultStatusMap } from '@/config/defaultStatus/defaultStatusMap.ts';
-import type { SchemaType, TextProps, OptionsProps, PicLink } from '@/types';
+import type { TextProps, OptionsProps, PicLink } from '@/types';
 import { isStringArr, isPicTitleDescStatusArr } from '@/types';
 export const useMaterialStore = defineStore('materialStore', {
   state: () => ({
@@ -17,13 +17,17 @@ export const useMaterialStore = defineStore('materialStore', {
       optionSelect: defaultStatusMap['optionSelect'](),
       // 文本输入组件
       textInput: defaultStatusMap['textInput'](),
-    } as Record<string, SchemaType>,
+    },
   }),
 
   actions: {
+    // 设置当前选中的业务组件
+    setCurrentMaterialCom(com: string) {
+      this.currentMaterialCom = com;
+    },
     // 修改业务组件中status为文本的属性值
-    setTestStatus(testProps: TextProps, text: string) {
-      testProps.status = text;
+    setTextStatus(textProps: TextProps, text: string) {
+      textProps.status = text;
     },
     // 增加选项操作
     addOption(optionsProps: OptionsProps) {
@@ -59,26 +63,23 @@ export const useMaterialStore = defineStore('materialStore', {
       optionsProps.currentStatus = index;
     },
     // 修改尺寸
-    setSize(optionsProps: OptionsProps, size: number) {
-      optionsProps.currentStatus = size;
+    setSize(optionsProps: OptionsProps, index: number) {
+      optionsProps.currentStatus = index;
     },
     // 修改字体粗细
-    setWeight(optionsProps: OptionsProps, size: number) {
-      optionsProps.currentStatus = size;
+    setWeight(optionsProps: OptionsProps, index: number) {
+      optionsProps.currentStatus = index;
     },
     // 修改字体倾斜
-    setItalic(optionsProps: OptionsProps, size: number) {
-      optionsProps.currentStatus = size;
+    setItalic(optionsProps: OptionsProps, index: number) {
+      optionsProps.currentStatus = index;
     },
     // 修改字体颜色
-    setColor(optionsProps: TextProps, color: string) {
-      optionsProps.status = color;
-      console.log(optionsProps.status);
+    setColor(textProps: TextProps, color: string) {
+      textProps.status = color;
+      console.log(textProps.status);
     },
-    // 设置当前选中的业务组件
-    setCurrentMaterialCom(com: string) {
-      this.currentMaterialCom = com;
-    },
+
     // 设置图片组件的value
     setPicLinkByIndex(optionsProps: OptionsProps, payload: PicLink) {
       if (isPicTitleDescStatusArr(optionsProps.status)) {
