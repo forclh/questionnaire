@@ -6,6 +6,7 @@ import optionSelectDefaultStatus from './OptionSelect.ts';
 import singlePicSelectDefaultStatus from './SinglePicSelect.ts';
 import multiPicSelectDefaultStatus from './MultiPicSelect.ts';
 import textInputDefaultStatus from './TextInput.ts';
+import textNoteDefaultStatus from './TextNote.ts';
 
 
 export const defaultStatusMap = {
@@ -15,4 +16,5 @@ export const defaultStatusMap = {
   singlePicSelect: singlePicSelectDefaultStatus,
   multiPicSelect: multiPicSelectDefaultStatus,
   textInput: textInputDefaultStatus,
+  textNote: textNoteDefaultStatus,
 };

@@ -17,7 +17,7 @@ const router = createRouter({
       path: '/materials',
       name: 'materials',
       component: () => import('@/views/MaterialsView/index.vue'),
-      redirect: '/materials/selectGroup',
+      redirect: '/materials/noteGroup',
       children: [
         {
           path: 'selectGroup',
@@ -80,6 +80,15 @@ const router = createRouter({
           path: 'noteGroup',
           name: 'noteGroup',
           component: () => import('@/views/MaterialsView/NoteGroupView.vue'),
+          redirect: '/materials/noteGroup/textNote',
+          children: [
+            {
+              path: 'textNote',
+              name: 'textNote',
+              component: () =>
+                import('@/components/SurveyComs/Materials/NoteComs/TextNote.vue'),
+            },
+          ]
         },
         {
           path: 'personalInfoGroup',

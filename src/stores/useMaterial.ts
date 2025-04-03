@@ -17,6 +17,8 @@ export const useMaterialStore = defineStore('materialStore', {
       optionSelect: defaultStatusMap['optionSelect'](),
       // 文本输入组件
       textInput: defaultStatusMap['textInput'](),
+      // 备注组件
+      textNote: defaultStatusMap['textNote'](),
     },
   }),
 
@@ -63,7 +65,7 @@ export const useMaterialStore = defineStore('materialStore', {
       optionsProps.currentStatus = index;
     },
     // 修改尺寸
-    setSize(optionsProps: OptionsProps, index: number) {
+    setCurrentStatus(optionsProps: OptionsProps, index: number) {
       optionsProps.currentStatus = index;
     },
     // 修改字体粗细
@@ -77,7 +79,6 @@ export const useMaterialStore = defineStore('materialStore', {
     // 修改字体颜色
     setColor(textProps: TextProps, color: string) {
       textProps.status = color;
-      console.log(textProps.status);
     },
 
     // 设置图片组件的value
@@ -85,10 +86,6 @@ export const useMaterialStore = defineStore('materialStore', {
       if (isPicTitleDescStatusArr(optionsProps.status)) {
         optionsProps.status[payload.index].value = payload.link;
       }
-    },
-    // 设置组件类型
-    setType(optionsProps: OptionsProps, type: number) {
-      optionsProps.currentStatus = type;
     },
   },
 });

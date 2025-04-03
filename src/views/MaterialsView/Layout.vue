@@ -24,8 +24,9 @@ import { useMaterialStore } from '@/stores/useMaterial.ts';
 import { computed, provide } from 'vue';
 import { updateStatusKey } from '@/types/key.ts';
 import { ElMessage } from 'element-plus';
-import { isPicLink } from '@/types';
+import { isPicLink, isOptionsStatus, isTypeStatus } from '@/types';
 import type { PicLink, MaterialStore } from '@/types';
+import { changeEditorIsShowStatus } from '@/utils';
 // 数据仓库
 const store = useMaterialStore() as unknown as MaterialStore;
 // 获取当前选中组件的状态数据
@@ -50,21 +51,23 @@ const updateStatus = (configKey: string, payload?: string | number | PicLink) =>
       store.setTextStatus(currentComStatus.value[configKey], payload);
       break;
     case 'options':
-      if (typeof payload === 'number') {
-        // 删除选项
-        const result = store.removeOption(currentComStatus.value[configKey], payload);
-        if (result) {
-          ElMessage.success('删除成功');
+      if (isOptionsStatus(currentComStatus.value)) {
+        if (typeof payload === 'number') {
+          // 删除选项
+          const result = store.removeOption(currentComStatus.value[configKey], payload);
+          if (result) {
+            ElMessage.success('删除成功');
+          } else {
+            ElMessage.error('至少保留两个选项');
+          }
+          // object类型的payload为图片组件的修改
+        } else if (typeof payload === 'object' && isPicLink(payload)) {
+          // 修改图片链接
+          store.setPicLinkByIndex(currentComStatus.value[configKey], payload);
         } else {
-          ElMessage.error('至少保留两个选项');
+          // 添加选项
+          store.addOption(currentComStatus.value[configKey]);
         }
-        // object类型的payload为图片组件的修改
-      } else if (typeof payload === 'object' && isPicLink(payload)) {
-        // 修改图片链接
-        store.setPicLinkByIndex(currentComStatus.value[configKey], payload);
-      } else {
-        // 添加选项
-        store.addOption(currentComStatus.value[configKey]);
       }
       break;
     case 'position':
@@ -80,7 +83,7 @@ const updateStatus = (configKey: string, payload?: string | number | PicLink) =>
         console.error('Invalid payload type for "titleSize or descSize". Expected number.');
         return;
       }
-      store.setSize(currentComStatus.value[configKey], payload);
+      store.setCurrentStatus(currentComStatus.value[configKey], payload);
       break;
     case 'titleWeight':
     case 'descWeight':
@@ -111,7 +114,12 @@ const updateStatus = (configKey: string, payload?: string | number | PicLink) =>
         console.error('Invalid payload type for "type". Expected number.');
         return;
       }
-      store.setType(currentComStatus.value[configKey], payload);
+      if (isTypeStatus(currentComStatus.value)) {
+        // 切换编辑器的显示状态
+        changeEditorIsShowStatus(currentComStatus.value, payload);
+        store.setCurrentStatus(currentComStatus.value[configKey], payload);
+      }
+      break;
   }
 };
 // 向子孙提供更新状态的方法

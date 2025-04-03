@@ -26,6 +26,7 @@ export interface OptionsProps extends BaseProps {
 // --定义整个status的类型--
 // 每个组件都有的公共项
 export interface BaseStatus {
+  [key: string]: TextProps | OptionsProps;
   title: TextProps;
   desc: TextProps;
   position: OptionsProps;
@@ -45,6 +46,14 @@ export interface OptionsStatus extends BaseStatus {
 
 export interface TypeStatus extends BaseStatus {
   type: OptionsProps;
+}
+
+export function isOptionsStatus(status: OptionsStatus | TypeStatus): status is OptionsStatus {
+  return 'options' in status;
+}
+
+export function isTypeStatus(status: OptionsStatus | TypeStatus): status is TypeStatus {
+  return 'type' in status;
 }
 
 // 判断status是否为string[]
