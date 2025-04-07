@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    <router-link class="link-item mb-15">个人信息</router-link>
+    <router-link class="link-item mb-15" exact-active-class="link-item-active" :to="{name: 'personalInfoGender'}">性别</router-link>
   </Layout>
 </template>
 
@@ -8,4 +8,3 @@
 import Layout from './Layout.vue';
 </script>
 
-<style lang="scss" scoped></style>

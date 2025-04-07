@@ -17,4 +17,5 @@ export const defaultStatusMap = {
   multiPicSelect: multiPicSelectDefaultStatus,
   textInput: textInputDefaultStatus,
   textNote: textNoteDefaultStatus,
+  personalInfoGender: singleSelectDefaultStatus
 };

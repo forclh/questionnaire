@@ -1,8 +1,8 @@
 // 工具库
 
 import { isStringArr, isPicTitleDescStatusArr, isValueStatusArr } from '@/types';
-import type { TextProps, OptionsProps, TypeStatus } from '@/types';
-
+import type { TextProps, OptionsProps, TypeStatus, SchemaType, MaterialComType } from '@/types';
+import { genderStatus } from '@/config/defaultStatus/initStatus';
 export function getTextStatus(props: TextProps) {
   return props.status;
 }
@@ -53,5 +53,16 @@ export function changeEditorIsShowStatus(status: TypeStatus, type: number) {
     for (let i in editorNames) {
       status[editorNames[i]].isShow = !status[editorNames[i]].isShow;
     }
+  }
+}
+
+export function updateInitStatus(comStatus: SchemaType, newMaterialCom: MaterialComType) {
+  switch (newMaterialCom) {
+    case 'personalInfoGender':
+      comStatus.name = 'personalInfoGender';
+      comStatus.status.title.status = '您的性别是';
+      comStatus.status.desc.status = '默认描述内容';
+      comStatus.status.options.status = genderStatus();
+      break;
   }
 }

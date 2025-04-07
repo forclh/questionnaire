@@ -17,7 +17,7 @@ const router = createRouter({
       path: '/materials',
       name: 'materials',
       component: () => import('@/views/MaterialsView/index.vue'),
-      redirect: '/materials/noteGroup',
+      redirect: '/materials/selectGroup',
       children: [
         {
           path: 'selectGroup',
@@ -66,10 +66,9 @@ const router = createRouter({
             {
               path: 'textInput',
               name: 'textInput',
-              component: () =>
-                import('@/components/SurveyComs/Materials/InputComs/TextInput.vue'),
-            }
-          ]
+              component: () => import('@/components/SurveyComs/Materials/InputComs/TextInput.vue'),
+            },
+          ],
         },
         {
           path: 'advancedGroup',
@@ -85,15 +84,22 @@ const router = createRouter({
             {
               path: 'textNote',
               name: 'textNote',
-              component: () =>
-                import('@/components/SurveyComs/Materials/NoteComs/TextNote.vue'),
+              component: () => import('@/components/SurveyComs/Materials/NoteComs/TextNote.vue'),
             },
-          ]
+          ],
         },
         {
           path: 'personalInfoGroup',
           name: 'personalInfoGroup',
           component: () => import('@/views/MaterialsView/PersonalInfoGroupView.vue'),
+          redirect: '/materials/personalInfoGroup/personalInfoGender',
+          children: [
+            {
+              path: 'personalInfoGender',
+              name: 'personalInfoGender',
+              component: () => import('@/components/SurveyComs/Materials/SelectComs/SingleSelect.vue'),
+            },
+          ],
         },
         {
           path: 'contactGroup',
@@ -110,7 +116,7 @@ router.beforeEach((to, from, next) => {
   const activeView = localStorage.getItem('activeView');
   const store = useMaterialStore();
   if (activeView === 'materials' && to.name) {
-    store.setCurrentMaterialCom(to.name as string)
+    store.setCurrentMaterialCom(to.name as string);
   }
   next();
 });

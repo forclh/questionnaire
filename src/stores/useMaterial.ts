@@ -1,8 +1,19 @@
 // 组件市场中所有组件的状态仓库
 import { defineStore } from 'pinia';
 import { defaultStatusMap } from '@/config/defaultStatus/defaultStatusMap.ts';
-import type { TextProps, OptionsProps, PicLink } from '@/types';
+import type { TextProps, OptionsProps, PicLink, MaterialComType, SchemaType } from '@/types';
 import { isStringArr, isPicTitleDescStatusArr } from '@/types';
+import { updateInitStatus } from '@/utils';
+
+// 记录哪些组件需要初始化
+const keyToInitStatus = ['personalInfoGender'] as MaterialComType[];
+// 初始化后的状态对象
+const initializedStatus: { [key: string]: SchemaType } = {};
+keyToInitStatus.forEach((key) => {
+  const defaultStatus = defaultStatusMap[key]();
+  updateInitStatus(defaultStatus, key);
+  initializedStatus[key] = defaultStatus;
+});
 export const useMaterialStore = defineStore('materialStore', {
   state: () => ({
     // 当前选中的业务组件
@@ -19,6 +30,8 @@ export const useMaterialStore = defineStore('materialStore', {
       textInput: defaultStatusMap['textInput'](),
       // 备注组件
       textNote: defaultStatusMap['textNote'](),
+      // 个人信息预设组件
+      personalInfoGender: initializedStatus['personalInfoGender'],
     },
   }),
 

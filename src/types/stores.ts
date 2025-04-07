@@ -10,7 +10,7 @@ export type QuestionType =
   | 'textInput';
 
 // 非题目类型
-export type NonQuestionType = 'textNote';
+export type NonQuestionType = 'textNote' | 'personalInfoGender';
 // 业务组件类型（题目类型 + 非题目类型）
 export type MaterialComType = QuestionType | NonQuestionType;
 
