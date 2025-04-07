@@ -92,12 +92,73 @@ const router = createRouter({
           path: 'personalInfoGroup',
           name: 'personalInfoGroup',
           component: () => import('@/views/MaterialsView/PersonalInfoGroupView.vue'),
-          redirect: '/materials/personalInfoGroup/personalInfoGender',
+          redirect: '/materials/personalInfoGroup/personalInfoName',
           children: [
+            {
+              path: 'personalInfoName',
+              name: 'personalInfoName',
+              component: () =>
+                import('@/components/SurveyComs/Materials/InputComs/TextInput.vue'),
+            },
+            {
+              path: 'personalInfoIdCard',
+              name: 'personalInfoIdCard',
+              component: () =>
+                import('@/components/SurveyComs/Materials/InputComs/TextInput.vue'),
+            },
+            {
+              path: 'personalInfoUniversity',
+              name: 'personalInfoUniversity',
+              component: () =>
+                import('@/components/SurveyComs/Materials/InputComs/TextInput.vue'),
+            },
+            {
+              path: 'personalInfoMajor',
+              name: 'personalInfoMajor',
+              component: () =>
+                import('@/components/SurveyComs/Materials/InputComs/TextInput.vue'),
+            },
+            {
+              path: 'personalInfoIndustry',
+              name: 'personalInfoIndustry',
+              component: () =>
+                import('@/components/SurveyComs/Materials/InputComs/TextInput.vue'),
+            },
+            {
+              path: 'personalInfoCompany',
+              name: 'personalInfoCompany',
+              component: () =>
+                import('@/components/SurveyComs/Materials/InputComs/TextInput.vue'),
+            },
+            {
+              path: 'personalInfoPosition',
+              name: 'personalInfoPosition',
+              component: () =>
+                import('@/components/SurveyComs/Materials/InputComs/TextInput.vue'),
+            },
             {
               path: 'personalInfoGender',
               name: 'personalInfoGender',
-              component: () => import('@/components/SurveyComs/Materials/SelectComs/SingleSelect.vue'),
+              component: () =>
+                import('@/components/SurveyComs/Materials/SelectComs/SingleSelect.vue'),
+            },
+            {
+              path: 'personalInfoEducation',
+              name: 'personalInfoEducation',
+              component: () =>
+                import('@/components/SurveyComs/Materials/SelectComs/SingleSelect.vue'),
+            },
+            {
+              path: 'personalInfoOccupation',
+              name: 'personalInfoOccupation',
+              component: () =>
+                import('@/components/SurveyComs/Materials/SelectComs/SingleSelect.vue'),
+            },
+            {
+              path: 'personalInfoAge',
+              name: 'personalInfoAge',
+              component: () =>
+                import('@/components/SurveyComs/Materials/SelectComs/SingleSelect.vue'),
             },
           ],
         },

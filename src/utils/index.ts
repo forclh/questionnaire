@@ -2,7 +2,7 @@
 
 import { isStringArr, isPicTitleDescStatusArr, isValueStatusArr } from '@/types';
 import type { TextProps, OptionsProps, TypeStatus, SchemaType, MaterialComType } from '@/types';
-import { genderStatus } from '@/config/defaultStatus/initStatus';
+import { genderStatus, OccupationStatus, educationStatus, ageStatus } from '@/config/defaultStatus/initStatus';
 export function getTextStatus(props: TextProps) {
   return props.status;
 }
@@ -57,12 +57,57 @@ export function changeEditorIsShowStatus(status: TypeStatus, type: number) {
 }
 
 export function updateInitStatus(comStatus: SchemaType, newMaterialCom: MaterialComType) {
+  // 提取公共部分，设置默认描述内容
+  comStatus.status.desc.status = '默认描述内容';
+
   switch (newMaterialCom) {
+    case 'personalInfoName':
+      comStatus.name = 'personalInfoName';
+      comStatus.status.title.status = '您的姓名是';
+      break;
     case 'personalInfoGender':
       comStatus.name = 'personalInfoGender';
       comStatus.status.title.status = '您的性别是';
-      comStatus.status.desc.status = '默认描述内容';
       comStatus.status.options.status = genderStatus();
+      break;
+    case 'personalInfoIdCard':
+      comStatus.name = 'personalInfoIdCard';
+      comStatus.status.title.status = '您的身份证号是';
+      break;
+    case 'personalInfoUniversity':
+      comStatus.name = 'personalInfoUniversity';
+      comStatus.status.title.status = '您的学校是';
+      break;
+    case 'personalInfoMajor':
+      comStatus.name = 'personalInfoMajor';
+      comStatus.status.title.status = '您的专业是';
+      break;
+    case 'personalInfoIndustry':
+      comStatus.name = 'personalInfoIndustry';
+      comStatus.status.title.status = '您的行业是';
+      break;
+    case 'personalInfoPosition':
+      comStatus.name = 'personalPosition';
+      comStatus.status.title.status = '您的职位是';
+      break;
+    case 'personalInfoCompany':
+      comStatus.name = 'personalInfoCompany';
+      comStatus.status.title.status = '您的公司是';
+      break;
+    case 'personalInfoEducation':
+      comStatus.name = 'personalInfoEducation';
+      comStatus.status.title.status = '您的学历是';
+      comStatus.status.options.status = educationStatus();
+      break;
+    case 'personalInfoOccupation':
+      comStatus.name = 'personalInfoOccupation';
+      comStatus.status.title.status = '您的职业是';
+      comStatus.status.options.status = OccupationStatus();
+      break;
+    case 'personalInfoAge':
+      comStatus.name = 'personalInfoAge';
+      comStatus.status.title.status = '您的年龄是';
+      comStatus.status.options.status = ageStatus();
       break;
   }
 }

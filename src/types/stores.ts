@@ -7,10 +7,21 @@ export type QuestionType =
   | 'singlePicSelect'
   | 'multiPicSelect'
   | 'optionSelect'
-  | 'textInput';
+  | 'textInput'
+  | 'personalInfoGender'
+  | 'personalInfoName'
+  | 'personalInfoIdCard'
+  | 'personalInfoUniversity'
+  | 'personalInfoMajor'
+  | 'personalInfoIndustry'
+  | 'personalInfoPosition'
+  | 'personalInfoCompany'
+  | 'personalInfoEducation'
+  | 'personalInfoOccupation'
+  | 'personalInfoAge';
 
 // 非题目类型
-export type NonQuestionType = 'textNote' | 'personalInfoGender';
+export type NonQuestionType = 'textNote';
 // 业务组件类型（题目类型 + 非题目类型）
 export type MaterialComType = QuestionType | NonQuestionType;
 

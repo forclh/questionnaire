@@ -17,5 +17,15 @@ export const defaultStatusMap = {
   multiPicSelect: multiPicSelectDefaultStatus,
   textInput: textInputDefaultStatus,
   textNote: textNoteDefaultStatus,
-  personalInfoGender: singleSelectDefaultStatus
+  personalInfoGender: singleSelectDefaultStatus,
+  personalInfoName: textInputDefaultStatus,
+  personalInfoIdCard: textInputDefaultStatus,
+  personalInfoUniversity: textInputDefaultStatus,
+  personalInfoMajor: textInputDefaultStatus,
+  personalInfoIndustry: textInputDefaultStatus,
+  personalInfoPosition: textInputDefaultStatus,
+  personalInfoCompany: textInputDefaultStatus,
+  personalInfoOccupation: singleSelectDefaultStatus,
+  personalInfoEducation: singleSelectDefaultStatus,
+  personalInfoAge: singleSelectDefaultStatus,
 };

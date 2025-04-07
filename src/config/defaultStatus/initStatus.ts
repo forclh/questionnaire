@@ -18,7 +18,7 @@ export const educationStatus = () => [
   '硕士及以上',
 ];
 
-export const careerStatus = () => [
+export const OccupationStatus = () => [
   '在校学生',
   '政府/机关干部/公务员',
   '企业管理者（包括基层及中高层管理者）',

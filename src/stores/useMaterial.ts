@@ -6,7 +6,19 @@ import { isStringArr, isPicTitleDescStatusArr } from '@/types';
 import { updateInitStatus } from '@/utils';
 
 // 记录哪些组件需要初始化
-const keyToInitStatus = ['personalInfoGender'] as MaterialComType[];
+const keyToInitStatus = [
+  'personalInfoGender',
+  'personalInfoName',
+  'personalInfoIdCard',
+  'personalInfoUniversity',
+  'personalInfoMajor',
+  'personalInfoIndustry',
+  'personalInfoPosition',
+  'personalInfoCompany',
+  'personalInfoEducation',
+  'personalInfoOccupation',
+  'personalInfoAge'
+] as MaterialComType[];
 // 初始化后的状态对象
 const initializedStatus: { [key: string]: SchemaType } = {};
 keyToInitStatus.forEach((key) => {
@@ -32,6 +44,16 @@ export const useMaterialStore = defineStore('materialStore', {
       textNote: defaultStatusMap['textNote'](),
       // 个人信息预设组件
       personalInfoGender: initializedStatus['personalInfoGender'],
+      personalInfoName: initializedStatus['personalInfoName'],
+      personalInfoIdCard: initializedStatus['personalInfoIdCard'],
+      personalInfoUniversity: initializedStatus['personalInfoUniversity'],
+      personalInfoMajor: initializedStatus['personalInfoMajor'],
+      personalInfoIndustry: initializedStatus['personalInfoIndustry'],
+      personalInfoPosition: initializedStatus['personalInfoPosition'],
+      personalInfoCompany: initializedStatus['personalInfoCompany'],
+      personalInfoEducation: initializedStatus['personalInfoEducation'],
+      personalInfoOccupation: initializedStatus['personalInfoOccupation'],
+      personalInfoAge: initializedStatus['personalInfoAge'],
     },
   }),
 
