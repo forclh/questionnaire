@@ -39,7 +39,11 @@ const currentCom = computed(() => {
   return store.coms[store.currentMaterialCom];
 });
 // 向子孙提供更新状态的方法
-const updateStatus = (configKey: string, payload?: string | number | PicLink) => {
+const updateStatus = (
+  configKey: string,
+  payload?: string | number | PicLink,
+  isShowChange?: Boolean,
+) => {
   // 修改数据仓库
   switch (configKey) {
     case 'title':
@@ -115,8 +119,10 @@ const updateStatus = (configKey: string, payload?: string | number | PicLink) =>
         return;
       }
       if (isTypeStatus(currentComStatus.value)) {
-        // 切换编辑器的显示状态
-        changeEditorIsShowStatus(currentComStatus.value, payload);
+        if (isShowChange) {
+          // 切换编辑器的显示状态
+          changeEditorIsShowStatus(currentComStatus.value, payload);
+        }
         store.setCurrentStatus(currentComStatus.value[configKey], payload);
       }
       break;

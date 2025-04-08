@@ -17,7 +17,7 @@ const keyToInitStatus = [
   'personalInfoCompany',
   'personalInfoEducation',
   'personalInfoOccupation',
-  'personalInfoAge'
+  'personalInfoAge',
 ] as MaterialComType[];
 // 初始化后的状态对象
 const initializedStatus: { [key: string]: SchemaType } = {};
@@ -42,6 +42,8 @@ export const useMaterialStore = defineStore('materialStore', {
       textInput: defaultStatusMap['textInput'](),
       // 备注组件
       textNote: defaultStatusMap['textNote'](),
+      // 高级题型组件
+      dateSelect: defaultStatusMap['dateSelect'](),
       // 个人信息预设组件
       personalInfoGender: initializedStatus['personalInfoGender'],
       personalInfoName: initializedStatus['personalInfoName'],

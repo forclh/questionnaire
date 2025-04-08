@@ -7,7 +7,7 @@ import singlePicSelectDefaultStatus from './SinglePicSelect.ts';
 import multiPicSelectDefaultStatus from './MultiPicSelect.ts';
 import textInputDefaultStatus from './TextInput.ts';
 import textNoteDefaultStatus from './TextNote.ts';
-
+import dateSelectDefaultStatus from './DateSelect.ts';
 
 export const defaultStatusMap = {
   singleSelect: singleSelectDefaultStatus,
@@ -28,4 +28,5 @@ export const defaultStatusMap = {
   personalInfoOccupation: singleSelectDefaultStatus,
   personalInfoEducation: singleSelectDefaultStatus,
   personalInfoAge: singleSelectDefaultStatus,
+  dateSelect: dateSelectDefaultStatus,
 };

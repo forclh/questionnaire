@@ -2,7 +2,12 @@
 
 import { isStringArr, isPicTitleDescStatusArr, isValueStatusArr } from '@/types';
 import type { TextProps, OptionsProps, TypeStatus, SchemaType, MaterialComType } from '@/types';
-import { genderStatus, OccupationStatus, educationStatus, ageStatus } from '@/config/defaultStatus/initStatus';
+import {
+  genderStatus,
+  OccupationStatus,
+  educationStatus,
+  ageStatus,
+} from '@/config/defaultStatus/initStatus';
 export function getTextStatus(props: TextProps) {
   return props.status;
 }
@@ -31,6 +36,12 @@ export function getCurrentStatus(props: OptionsProps) {
 
 export function getStringStatusByCurrentStatus(props: OptionsProps) {
   if (props && isStringArr(props.status)) {
+    return props.status[props.currentStatus];
+  }
+}
+
+export function getValueStatusByCurrentStatus(props: OptionsProps) {
+  if (props && isValueStatusArr(props.status)) {
     return props.status[props.currentStatus];
   }
 }

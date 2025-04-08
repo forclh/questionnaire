@@ -27,6 +27,6 @@ const props = defineProps<{
 const updateStatus = inject(updateStatusKey)!;
 // 改变类型
 const changeType = (type: number) => {
-  updateStatus(props.configKey, type);
+  updateStatus(props.configKey, type, true);
 };
 </script>
