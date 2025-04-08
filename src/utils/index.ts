@@ -120,5 +120,9 @@ export function updateInitStatus(comStatus: SchemaType, newMaterialCom: Material
       comStatus.status.title.status = '您的年龄是';
       comStatus.status.options.status = ageStatus();
       break;
+    case 'personalInfoBirth':
+      comStatus.name = 'personalInfoBirth';
+      comStatus.status.title.status = '请选择出生日期';
+      break;
   }
 }

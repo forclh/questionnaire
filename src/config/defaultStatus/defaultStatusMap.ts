@@ -29,4 +29,5 @@ export const defaultStatusMap = {
   personalInfoEducation: singleSelectDefaultStatus,
   personalInfoAge: singleSelectDefaultStatus,
   dateSelect: dateSelectDefaultStatus,
+  personalInfoBirth: dateSelectDefaultStatus,
 };

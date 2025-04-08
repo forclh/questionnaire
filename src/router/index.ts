@@ -162,6 +162,12 @@ const router = createRouter({
               component: () =>
                 import('@/components/SurveyComs/Materials/SelectComs/SingleSelect.vue'),
             },
+            {
+              path: 'personalInfoBirth',
+              name: 'personalInfoBirth',
+              component: () =>
+                import('@/components/SurveyComs/Materials/AdvancedComs/DateSelect.vue'),
+            },
           ],
         },
         {

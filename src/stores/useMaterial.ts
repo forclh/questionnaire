@@ -18,6 +18,7 @@ const keyToInitStatus = [
   'personalInfoEducation',
   'personalInfoOccupation',
   'personalInfoAge',
+  'personalInfoBirth'
 ] as MaterialComType[];
 // 初始化后的状态对象
 const initializedStatus: { [key: string]: SchemaType } = {};
@@ -56,6 +57,7 @@ export const useMaterialStore = defineStore('materialStore', {
       personalInfoEducation: initializedStatus['personalInfoEducation'],
       personalInfoOccupation: initializedStatus['personalInfoOccupation'],
       personalInfoAge: initializedStatus['personalInfoAge'],
+      personalInfoBirth: initializedStatus['personalInfoBirth'],
     },
   }),
 

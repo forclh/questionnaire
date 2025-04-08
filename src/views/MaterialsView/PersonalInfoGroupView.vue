@@ -66,6 +66,12 @@
       :to="{ name: 'personalInfoAge' }"
       >年龄</router-link
     >
+    <router-link
+      class="link-item mb-15"
+      exact-active-class="link-item-active"
+      :to="{ name: 'personalInfoBirth' }"
+      >出生日期</router-link
+    >
   </Layout>
 </template>
 

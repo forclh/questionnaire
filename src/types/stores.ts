@@ -18,7 +18,8 @@ export type QuestionType =
   | 'personalInfoCompany'
   | 'personalInfoEducation'
   | 'personalInfoOccupation'
-  | 'personalInfoAge';
+  | 'personalInfoAge'
+  | 'personalInfoBirth';
 
 // 非题目类型
 export type NonQuestionType = 'textNote';
