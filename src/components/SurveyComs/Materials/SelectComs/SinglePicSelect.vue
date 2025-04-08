@@ -23,7 +23,7 @@
           :value="item.picTitle"
           class="picOption flex mb-15"
         >
-          <PicItem v-bind="{...item, index}"/>
+          <PicItem v-bind="{ ...item, index }" />
         </el-radio>
       </el-radio-group>
     </div>
@@ -69,7 +69,7 @@ const radioValue = ref('');
 .picOption {
   height: auto;
   flex-direction: column-reverse;
-  margin-right: 0;  /* 覆盖el-radio的默认样式 */
+  margin-right: 0; /* 覆盖el-radio的默认样式 */
 }
 
 .radio-group {

@@ -69,15 +69,17 @@ const deletePic = (index: number) => {
     confirmButtonText: '确定',
     cancelButtonText: '取消',
     type: 'warning',
-  }).then(() =>{
-    // 确认删除图片
-    if (updateStatus) {
-      updateStatus(props.configKey, {index, link: ''}); // 覆盖图片链接
-    }
-  }).catch(() => {
-    // 取消删除图片
-    ElMessage.info('已取消删除');
-  });
+  })
+    .then(() => {
+      // 确认删除图片
+      if (updateStatus) {
+        updateStatus(props.configKey, { index, link: '' }); // 覆盖图片链接
+      }
+    })
+    .catch(() => {
+      // 取消删除图片
+      ElMessage.info('已取消删除');
+    });
 };
 </script>
 

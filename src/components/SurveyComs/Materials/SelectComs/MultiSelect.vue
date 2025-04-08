@@ -16,7 +16,12 @@
     />
     <div class="checkbox-group">
       <el-checkbox-group v-model="checkList">
-        <el-checkbox v-for="(item, index) in computedStatus.options" :key="index" :value="item" :label="item"></el-checkbox>
+        <el-checkbox
+          v-for="(item, index) in computedStatus.options"
+          :key="index"
+          :value="item"
+          :label="item"
+        ></el-checkbox>
       </el-checkbox-group>
     </div>
   </div>
@@ -55,4 +60,3 @@ const computedStatus = computed(() => ({
 
 const checkList = ref([]);
 </script>
-

@@ -40,7 +40,7 @@ export default function () {
       },
       options: {
         id: uuidV4(),
-        status: ['默认选项一', '默认选项二','默认选项三', '默认选项四'],
+        status: ['默认选项一', '默认选项二', '默认选项三', '默认选项四'],
         currentStatus: 0, // 当前选项的下标
         isShow: true,
         name: 'optionsEditor',
