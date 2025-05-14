@@ -5,7 +5,7 @@
       <router-link
         class="tab-item"
         exact-active-class="tab-show"
-        :to="{ name: 'questionType' }"
+        :to="{ name: 'questionTypeGroup' }"
       >
         <el-icon>
           <Memo />
@@ -25,13 +25,11 @@
       </router-link>
     </div>
     <!-- 路由视图出口 -->
-    <router-view></router-view>
+    <router-view class="tab-pane"></router-view>
   </div>
 </template>
 
 <script setup lang="ts">
-import Outline from './Outline.vue';
-import QuestionType from './QuestionType.vue';
 import { Memo, Document } from '@element-plus/icons-vue';
 </script>
 
@@ -72,7 +70,7 @@ import { Memo, Document } from '@element-plus/icons-vue';
     // 高度需要减去padding部分，否则会溢出
     height: calc(100% - 50px);
     padding: 25px;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
 }
 </style>

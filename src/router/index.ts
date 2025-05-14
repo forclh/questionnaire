@@ -12,12 +12,12 @@ const router = createRouter({
       path: '/editor',
       name: 'editor',
       component: () => import('@/views/EditorView/index.vue'),
-      redirect: '/editor/questionType',
+      redirect: '/editor/questionTypeGroup',
       children: [
         {
-          path: 'questionType',
-          name: 'questionType',
-          component: () => import('@/views/EditorView/LeftSide/QuestionType.vue'),
+          path: 'questionTypeGroup',
+          name: 'questionTypeGroup',
+          component: () => import('@/views/EditorView/LeftSide/QuestionTypeGroup.vue'),
         },
         {
           path: 'outline',
