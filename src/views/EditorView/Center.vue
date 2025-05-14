@@ -1,8 +1,17 @@
 <template>
-  <div class="center-container">画布区域</div>
+  <div class="center-container" ref="centerContainerRef">
+    <div v-for="item in editorStore.questionComs" :key="item.id">
+      <component :is="item.type" :status="item.status" :serialNum="1"/>
+    </div>
+  </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useEditorStore } from '@/stores/useEditor';
+// 获取数据仓库
+const editorStore = useEditorStore();
+
+</script>
 
 <style scoped lang="scss">
 .center-container {

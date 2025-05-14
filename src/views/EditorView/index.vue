@@ -19,6 +19,11 @@ import Header from '@/components/Common/Header.vue';
 import LeftSide from '@/views/EditorView/LeftSide/index.vue';
 import RightSide from '@/views/EditorView/RightSide.vue';
 import Center from '@/views/EditorView/Center.vue';
+import { useEditorStore } from '@/stores/useEditor';
+
+// 获取数据仓库
+const editorStore = useEditorStore();
+
 </script>
 
 <style scoped>

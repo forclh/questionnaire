@@ -46,3 +46,30 @@ export interface MaterialStore extends Actions {
   currentMaterialCom: MaterialComType;
   coms: Record<MaterialComType, SchemaType>;
 }
+
+// 题目类型列表
+export const QuestionTypeList = [
+  'singleSelect',
+  'multiSelect',
+  'singlePicSelect',
+  'multiPicSelect',
+  'optionSelect',
+  'textInput',
+  'personalInfoGender',
+  'personalInfoName',
+  'personalInfoIdCard',
+  'personalInfoUniversity',
+  'personalInfoMajor',
+  'personalInfoIndustry',
+  'personalInfoPosition',
+  'personalInfoCompany',
+  'personalInfoEducation',
+  'personalInfoOccupation',
+  'personalInfoAge',
+  'personalInfoBirth',
+];
+
+// 判断传入的值是否是题目类型
+export function isQuestionType(type: string): type is QuestionType {
+  return QuestionTypeList.includes(type as QuestionType);
+}
