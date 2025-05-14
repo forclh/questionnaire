@@ -1,10 +1,19 @@
 // 组件市场中所有组件的状态仓库
 import { defineStore } from 'pinia';
 import { defaultStatusMap } from '@/config/defaultStatus/defaultStatusMap.ts';
-import type { TextProps, OptionsProps, PicLink, MaterialComType, SchemaType } from '@/types';
-import { isStringArr, isPicTitleDescStatusArr } from '@/types';
+import type {MaterialComType, SchemaType } from '@/types';
 import { updateInitStatus } from '@/utils';
-
+import {
+  setTextStatus,
+  addOption,
+  removeOption,
+  setPosition,
+  setCurrentStatus,
+  setPicLinkByIndex,
+  setWeight,
+  setItalic,
+  setColor,
+} from '@/stores/actions';
 // 记录哪些组件需要初始化
 const keyToInitStatus = [
   'personalInfoGender',
@@ -18,7 +27,7 @@ const keyToInitStatus = [
   'personalInfoEducation',
   'personalInfoOccupation',
   'personalInfoAge',
-  'personalInfoBirth'
+  'personalInfoBirth',
 ] as MaterialComType[];
 // 初始化后的状态对象
 const initializedStatus: { [key: string]: SchemaType } = {};
@@ -60,71 +69,29 @@ export const useMaterialStore = defineStore('materialStore', {
       personalInfoBirth: initializedStatus['personalInfoBirth'],
     },
   }),
-
   actions: {
     // 设置当前选中的业务组件
     setCurrentMaterialCom(com: string) {
       this.currentMaterialCom = com;
     },
-    // 修改业务组件中status为文本的属性值
-    setTextStatus(textProps: TextProps, text: string) {
-      textProps.status = text;
-    },
+    setTextStatus,
     // 增加选项操作
-    addOption(optionsProps: OptionsProps) {
-      // 普通单选
-      if (isStringArr(optionsProps.status)) {
-        const lastItem = optionsProps.status[optionsProps.status.length - 1];
-        const match = lastItem.match(/(\d+)/);
-        const newIndex = match ? parseInt(match[0]) + 1 : 1;
-        optionsProps.status.push(`新增选项${newIndex}`);
-      } else if (isPicTitleDescStatusArr(optionsProps.status)) {
-        // 图片单选
-        const lastItem = optionsProps.status[optionsProps.status.length - 1];
-        const match = lastItem.picTitle.match(/(\d+)/);
-        const newIndex = match ? parseInt(match[0]) + 1 : 1;
-        optionsProps.status.push({
-          picTitle: `图片标题${newIndex}`,
-          picDesc: `图片描述${newIndex}`,
-          value: '',
-        });
-      }
-    },
+    addOption,
     // 删除选项操作
-    removeOption(optionsProps: OptionsProps, index: number) {
-      // 至少剩余两个选项
-      if (optionsProps.status.length <= 2) {
-        return false;
-      }
-      optionsProps.status.splice(index, 1);
-      return true;
-    },
+    removeOption,
     // 修改对齐方式
-    setPosition(optionsProps: OptionsProps, index: number) {
-      optionsProps.currentStatus = index;
-    },
+    setPosition,
     // 修改尺寸
-    setCurrentStatus(optionsProps: OptionsProps, index: number) {
-      optionsProps.currentStatus = index;
-    },
+    setCurrentStatus,
     // 修改字体粗细
-    setWeight(optionsProps: OptionsProps, index: number) {
-      optionsProps.currentStatus = index;
-    },
+    setWeight,
     // 修改字体倾斜
-    setItalic(optionsProps: OptionsProps, index: number) {
-      optionsProps.currentStatus = index;
-    },
+    setItalic,
     // 修改字体颜色
-    setColor(textProps: TextProps, color: string) {
-      textProps.status = color;
-    },
+    setColor,
+    // 修改业务组件中status为文本的属性值
 
     // 设置图片组件的value
-    setPicLinkByIndex(optionsProps: OptionsProps, payload: PicLink) {
-      if (isPicTitleDescStatusArr(optionsProps.status)) {
-        optionsProps.status[payload.index].value = payload.link;
-      }
-    },
+    setPicLinkByIndex,
   },
 });
