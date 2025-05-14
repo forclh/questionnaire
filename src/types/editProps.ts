@@ -86,3 +86,5 @@ export type PicLink = { index: number; link: string };
 export function isPicLink(obj: object): obj is PicLink {
   return 'index' in obj && 'link' in obj;
 }
+
+export type GetLink = (obj: PicLink) => void;

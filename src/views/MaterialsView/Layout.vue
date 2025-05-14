@@ -128,8 +128,13 @@ const updateStatus = (
       break;
   }
 };
+
+const getLink = (link: PicLink) => {
+  updateStatus('options', link);
+};
 // 向子孙提供更新状态的方法
 provide(updateStatusKey, updateStatus);
+provide('getLink', getLink);
 </script>
 
 <style scoped lang="scss">

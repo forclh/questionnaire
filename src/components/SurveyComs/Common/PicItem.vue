@@ -31,7 +31,7 @@ import { ref, inject, watch } from 'vue';
 import { ElMessage } from 'element-plus';
 import { Plus } from '@element-plus/icons-vue';
 import type { UploadProps } from 'element-plus';
-import { updateStatusKey } from '@/types/key.ts';
+import type { GetLink, PicLink } from '@/types';
 const props = defineProps({
   picTitle: {
     type: String,
@@ -79,15 +79,15 @@ watch(
   },
 );
 
-const updateStatus = inject(updateStatusKey)!;
-
+const getLink = inject('getLink', (link: PicLink) => {
+  console.warn('getLink not provided to PicItem component');
+}) as GetLink;
 // 上传成功
 const handleAvatarSuccess: UploadProps['onSuccess'] = (response) => {
-  const payload = {
+  getLink({
     index: props.index,
     link: response.imageUrl as string,
-  };
-  updateStatus('options', payload);
+  });
 };
 // 上传前检查
 const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
