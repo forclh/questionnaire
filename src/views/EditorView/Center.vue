@@ -20,7 +20,6 @@ const centerContainerRef = ref<HTMLElement | null>(null);
 const scrollToBottom = () => {
   nextTick(() => {
     if (centerContainerRef.value) {
-      console.log(centerContainerRef.value.scrollHeight);
       window.scrollTo({
         top: centerContainerRef.value.scrollHeight,
         behavior: 'smooth',

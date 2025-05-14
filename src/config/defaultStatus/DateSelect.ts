@@ -19,7 +19,7 @@ import { markRaw } from 'vue';
 // 不能导出对象，否则会导致多个业务组件共同一个数据状态
 export default function () {
   return {
-    type: DateSelect,
+    type: markRaw(DateSelect),
     name: 'dateSelect',
     id: uuidV4(), // 确保id不重复
     // 组件的状态：组件的每一个能够修改的状态都应该对应一个编辑组件
