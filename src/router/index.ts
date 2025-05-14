@@ -12,6 +12,19 @@ const router = createRouter({
       path: '/editor',
       name: 'editor',
       component: () => import('@/views/EditorView/index.vue'),
+      redirect: '/editor/questionType',
+      children: [
+        {
+          path: 'questionType',
+          name: 'questionType',
+          component: () => import('@/views/EditorView/LeftSide/QuestionType.vue'),
+        },
+        {
+          path: 'outline',
+          name: 'outline',
+          component: () => import('@/views/EditorView/LeftSide/Outline.vue'),
+        },
+      ],
     },
     {
       path: '/materials',

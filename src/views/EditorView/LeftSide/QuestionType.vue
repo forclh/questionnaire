@@ -1,0 +1,14 @@
+<!-- 题型面板 -->
+<template>
+  <div>
+    题型面板
+  </div>
+</template>
+
+<script setup>
+
+</script>
+
+<style lang="scss" scoped>
+
+</style>

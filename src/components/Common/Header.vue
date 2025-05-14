@@ -13,7 +13,7 @@
 <script setup lang="ts">
 import { ArrowLeft } from '@element-plus/icons-vue';
 import { useRouter } from 'vue-router';
-import avatar from '@/assets/img/avatar.jpg';
+import avatar from '@/assets/imgs/avatar.jpg';
 
 const router = useRouter();
 
