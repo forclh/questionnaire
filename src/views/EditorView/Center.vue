@@ -8,9 +8,29 @@
 
 <script setup lang="ts">
 import { useEditorStore } from '@/stores/useEditor';
+import { nextTick, ref } from 'vue';
+import { eventBus } from '@/utils/eventBus';
+
 // 获取数据仓库
 const editorStore = useEditorStore();
 
+
+// 添加题目时需要滑动到底部
+const centerContainerRef = ref<HTMLElement | null>(null);
+const scrollToBottom = () => {
+  nextTick(() => {
+    if (centerContainerRef.value) {
+      console.log(centerContainerRef.value.scrollHeight);
+      window.scrollTo({
+        top: centerContainerRef.value.scrollHeight,
+        behavior: 'smooth',
+      })
+    }
+  });
+};
+
+// 通过事件总线提供滚动到底部的功能
+eventBus.on('scrollToBottom', scrollToBottom);
 </script>
 
 <style scoped lang="scss">

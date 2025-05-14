@@ -9,6 +9,7 @@ import { defaultStatusMap } from '@/config/defaultStatus/defaultStatusMap';
 import { updateInitStatus } from '@/utils';
 import type { MaterialComType } from '@/types';
 import { useEditorStore } from '@/stores/useEditor';
+import { eventBus } from '@/utils/eventBus';
 
 // 获取数据仓库
 const editorStore = useEditorStore();
@@ -27,6 +28,8 @@ const addQuestionCom = () => {
   updateInitStatus(defaultStatus, questionType);
   // 添加状态到仓库
   editorStore.addQuestionCom(defaultStatus);
+  // 滚动到底部
+  eventBus.emit('scrollToBottom');
 };
 </script>
 

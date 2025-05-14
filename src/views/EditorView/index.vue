@@ -4,14 +4,16 @@
     <Header />
   </div>
   <!-- 编辑器主体区域 -->
-   <div class="container">
+  <div class="container">
     <!-- 左侧区域 -->
     <LeftSide />
-    <!-- 中间区域 -->
-    <Center />
     <!-- 右侧区域 -->
     <RightSide />
-   </div>
+  </div>
+  <div>
+    <!-- 中间区域 -->
+    <Center />
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -21,9 +23,8 @@ import RightSide from '@/views/EditorView/RightSide.vue';
 import Center from '@/views/EditorView/Center.vue';
 import { useEditorStore } from '@/stores/useEditor';
 
-// 获取数据仓库
-const editorStore = useEditorStore();
-
+// 使用数据仓库（为了在开发者工具中查看数据仓库）
+useEditorStore();
 </script>
 
 <style scoped>
@@ -45,5 +46,4 @@ const editorStore = useEditorStore();
   position: fixed;
   top: 50px;
 }
-
 </style>
