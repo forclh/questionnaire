@@ -5,6 +5,7 @@
       :key="item.id"
       class="content mb-10 relative"
       :class="{ active: editorStore.currentQuestionIndex === index }"
+      @click="showEditor(index)"
     >
       <component :is="item.type" :status="item.status" :serialNum="1" />
     </div>
@@ -34,6 +35,17 @@ const scrollToBottom = () => {
 
 // 通过事件总线提供滚动到底部的功能
 eventBus.on('scrollToBottom', scrollToBottom);
+
+// 显示题目编辑器
+const showEditor = (index: number) => {
+  // 如果当前选中的题目索引与点击的题目索引相同，则取消选中
+  if (editorStore.currentQuestionIndex === index) {
+    editorStore.setCurrentQuestionIndex(-1);
+  } else {
+    // 如果当前选中的题目索引与点击的题目索引不同，则选中该题目
+    editorStore.setCurrentQuestionIndex(index);
+  }
+};
 </script>
 
 <style scoped lang="scss">

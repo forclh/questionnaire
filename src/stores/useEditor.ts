@@ -37,6 +37,9 @@ export const useEditorStore = defineStore('editor', {
       if (isQuestionType(questionCom.name)) {
         this.questionCount++;
       }
-    }
+    },
+    setCurrentQuestionIndex(index: number) {
+      this.currentQuestionIndex = index;
+    },
   },
 });
