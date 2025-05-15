@@ -41,10 +41,18 @@ export interface Actions {
   setPicLinkByIndex: (optionsProps: OptionsProps, payload: PicLink) => void;
 }
 
-// state
+// 仓库类型
 export interface MaterialStore extends Actions {
   currentMaterialCom: MaterialComType;
   coms: Record<MaterialComType, SchemaType>;
+  setCurrentMaterialCom: (com: MaterialComType) => void;
+}
+
+export interface EditorStore extends Actions {
+  currentQuestionIndex: number;
+  questionComs: SchemaType[];
+  setCurrentQuestionIndex: (index: number) => void;
+  addQuestionCom: (questionCom: SchemaType) => void;
 }
 
 // 题目类型列表

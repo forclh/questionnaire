@@ -71,7 +71,7 @@ export const useMaterialStore = defineStore('materialStore', {
   }),
   actions: {
     // 设置当前选中的业务组件
-    setCurrentMaterialCom(com: string) {
+    setCurrentMaterialCom(com: MaterialComType) {
       this.currentMaterialCom = com;
     },
     setTextStatus,
