@@ -1,14 +1,16 @@
 <template>
   <div class="center-container" ref="centerContainerRef">
-    <div
-      v-for="(item, index) in editorStore.questionComs"
-      :key="item.id"
-      class="content mb-10 relative"
-      :class="{ active: editorStore.currentQuestionIndex === index }"
-      @click="showEditor(index)"
-    >
-      <component :is="item.type" :status="item.status" :serialNum="1" />
-    </div>
+    <draggable v-model="editorStore.questionComs" item-key="id">
+      <template #item="{ element, index }">
+        <div
+          class="content mb-10 relative"
+          :class="{ active: editorStore.currentQuestionIndex === index }"
+          @click="showEditor(index)"
+        >
+          <component :is="element.type" :status="element.status" :serialNum="1" />
+        </div>
+      </template>
+    </draggable>
   </div>
 </template>
 
@@ -16,6 +18,7 @@
 import { useEditorStore } from '@/stores/useEditor';
 import { nextTick, ref } from 'vue';
 import { eventBus } from '@/utils/eventBus';
+import draggable from 'vuedraggable';
 
 // 获取数据仓库
 const editorStore = useEditorStore();
