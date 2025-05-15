@@ -1,7 +1,12 @@
 <template>
   <div class="center-container" ref="centerContainerRef">
-    <div v-for="item in editorStore.questionComs" :key="item.id">
-      <component :is="item.type" :status="item.status" :serialNum="1"/>
+    <div
+      v-for="(item, index) in editorStore.questionComs"
+      :key="item.id"
+      class="content mb-10 relative"
+      :class="{ active: editorStore.currentQuestionIndex === index }"
+    >
+      <component :is="item.type" :status="item.status" :serialNum="1" />
     </div>
   </div>
 </template>
@@ -14,7 +19,6 @@ import { eventBus } from '@/utils/eventBus';
 // 获取数据仓库
 const editorStore = useEditorStore();
 
-
 // 添加题目时需要滑动到底部
 const centerContainerRef = ref<HTMLElement | null>(null);
 const scrollToBottom = () => {
@@ -23,7 +27,7 @@ const scrollToBottom = () => {
       window.scrollTo({
         top: centerContainerRef.value.scrollHeight,
         behavior: 'smooth',
-      })
+      });
     }
   });
 };
