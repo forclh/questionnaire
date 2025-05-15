@@ -2,7 +2,7 @@
 <template>
   <!-- 有题目 -->
   <div v-if="editorStore.questionCount > 0">
-    <draggable v-model="editorStore.questionComs" item-key="id">
+    <draggable v-model="editorStore.questionComs" item-key="id" @start="startDrag">
       <template #item="{ element }">
         <div class="mb-10">
           <div class="item">
@@ -24,6 +24,11 @@
 import { useEditorStore } from '@/stores/useEditor';
 import draggable from 'vuedraggable';
 const editorStore = useEditorStore();
+
+// 拖动时清空编辑器
+const startDrag = () => {
+  editorStore.setCurrentQuestionIndex(-1);
+};
 </script>
 
 <style scoped lang="scss">

@@ -1,6 +1,6 @@
 <template>
   <div class="center-container" ref="centerContainerRef">
-    <draggable v-model="editorStore.questionComs" item-key="id">
+    <draggable v-model="editorStore.questionComs" item-key="id" @start="startDrag">
       <template #item="{ element, index }">
         <div
           class="content mb-10 relative"
@@ -48,6 +48,11 @@ const showEditor = (index: number) => {
     // 如果当前选中的题目索引与点击的题目索引不同，则选中该题目
     editorStore.setCurrentQuestionIndex(index);
   }
+};
+
+// 拖动时清空编辑器
+const startDrag = () => {
+  editorStore.setCurrentQuestionIndex(-1);
 };
 </script>
 
