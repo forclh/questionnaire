@@ -6,6 +6,8 @@
           class="content mb-10 relative"
           :class="{ active: editorStore.currentQuestionIndex === index }"
           @click="showEditor(index)"
+          :key="element.id"
+          :ref="el => componentRefs[index] = el"
         >
           <component
             :is="element.type"
@@ -20,7 +22,7 @@
 
 <script setup lang="ts">
 import { useEditorStore } from '@/stores/useEditor';
-import { nextTick, ref } from 'vue';
+import { nextTick, ref, type ComponentPublicInstance } from 'vue';
 import { eventBus } from '@/utils/eventBus';
 import draggable from 'vuedraggable';
 // 组合式函数
@@ -31,6 +33,8 @@ const editorStore = useEditorStore();
 
 // 添加题目时需要滑动到底部
 const centerContainerRef = ref<HTMLElement | null>(null);
+
+// 滚动到底部
 const scrollToBottom = () => {
   nextTick(() => {
     if (centerContainerRef.value) {
@@ -42,9 +46,20 @@ const scrollToBottom = () => {
   });
 };
 
+// 选中的组件滚动到中间
+const componentRefs = ref<(Element | ComponentPublicInstance | null)[]>([]);
+
+const scrollToCenter = (index: number) => {
+  nextTick(() => {
+    const element = componentRefs.value[index];
+    if (element instanceof HTMLElement) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  });
+};
 // 通过事件总线提供滚动到底部的功能
 eventBus.on('scrollToBottom', scrollToBottom);
-
+eventBus.on('scrollToCenter', scrollToCenter);
 // 显示题目编辑器
 const { showEditor } = useQuestionSelect();
 

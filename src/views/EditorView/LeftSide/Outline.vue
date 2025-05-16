@@ -4,8 +4,8 @@
   <div v-if="editorStore.questionCount > 0">
     <draggable v-model="editorStore.questionComs" item-key="id" @start="startDrag">
       <template #item="{ element, index }" >
-        <div class="mb-10" v-show="isQuestionType(element.name)">
-          <div class="item" @click="showEditor(index)">
+        <div class="mb-10" v-show="isQuestionType(element.name)" >
+          <div class="item" @click="handleClick(index)" :class="{ active: editorStore.currentQuestionIndex === index }">
             {{ questionNumberList[index] }}.{{
               element.status.title.status.length > 10
                 ? element.status.title.status.slice(0, 10) + '...'
@@ -25,6 +25,7 @@ import { useEditorStore } from '@/stores/useEditor';
 import draggable from 'vuedraggable';
 import { useQuestionNumber, useQuestionSelect } from '@/composables';
 import { isQuestionType } from '@/types';
+import { eventBus } from '@/utils/eventBus';
 
 const editorStore = useEditorStore();
 
@@ -38,6 +39,12 @@ const startDrag = () => {
 
 // 显示题目编辑器
 const { showEditor } = useQuestionSelect();
+
+// 点击题目
+const handleClick = (index: number) => {
+  showEditor(index);
+  eventBus.emit('scrollToCenter', index);
+}
 </script>
 
 <style scoped lang="scss">
