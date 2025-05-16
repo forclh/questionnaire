@@ -24,7 +24,7 @@ import { nextTick, ref } from 'vue';
 import { eventBus } from '@/utils/eventBus';
 import draggable from 'vuedraggable';
 // 组合式函数
-import { useQuestionNumber } from '@/utils/hooks';
+import { useQuestionNumber, useQuestionSelect } from '@/composables';
 
 // 获取数据仓库
 const editorStore = useEditorStore();
@@ -46,15 +46,7 @@ const scrollToBottom = () => {
 eventBus.on('scrollToBottom', scrollToBottom);
 
 // 显示题目编辑器
-const showEditor = (index: number) => {
-  // 如果当前选中的题目索引与点击的题目索引相同，则取消选中
-  if (editorStore.currentQuestionIndex === index) {
-    editorStore.setCurrentQuestionIndex(-1);
-  } else {
-    // 如果当前选中的题目索引与点击的题目索引不同，则选中该题目
-    editorStore.setCurrentQuestionIndex(index);
-  }
-};
+const { showEditor } = useQuestionSelect();
 
 // 拖动时清空编辑器
 const startDrag = () => {

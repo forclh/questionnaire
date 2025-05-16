@@ -5,7 +5,7 @@
     <draggable v-model="editorStore.questionComs" item-key="id" @start="startDrag">
       <template #item="{ element, index }" >
         <div class="mb-10" v-show="isQuestionType(element.name)">
-          <div class="item">
+          <div class="item" @click="showEditor(index)">
             {{ questionNumberList[index] }}.{{
               element.status.title.status.length > 10
                 ? element.status.title.status.slice(0, 10) + '...'
@@ -23,7 +23,7 @@
 <script setup lang="ts">
 import { useEditorStore } from '@/stores/useEditor';
 import draggable from 'vuedraggable';
-import { useQuestionNumber } from '@/utils/hooks';
+import { useQuestionNumber, useQuestionSelect } from '@/composables';
 import { isQuestionType } from '@/types';
 
 const editorStore = useEditorStore();
@@ -35,6 +35,9 @@ const questionNumberList = useQuestionNumber(editorStore.questionComs);
 const startDrag = () => {
   editorStore.setCurrentQuestionIndex(-1);
 };
+
+// 显示题目编辑器
+const { showEditor } = useQuestionSelect();
 </script>
 
 <style scoped lang="scss">
