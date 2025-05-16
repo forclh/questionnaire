@@ -111,7 +111,7 @@ export default function () {
       },
       descColor: {
         id: uuidV4(),
-        status: '#000',
+        status: '#909399',
         isShow: true,
         name: 'colorEditor',
         editCom: markRaw(ColorEditor),

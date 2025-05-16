@@ -8,7 +8,7 @@
     <div class="center">
       <router-view v-slot="{ Component }">
         <!-- 传递状态和序号 -->
-        <component :is="Component" :status="currentCom.status" :serialNum="1"></component>
+        <component :is="Component" :status="currentCom.status" serialNum="1"></component>
       </router-view>
     </div>
     <!-- 业务组件编辑面板 -->

@@ -14,8 +14,7 @@
       :titleColor="computedStatus.titleColor"
       :descColor="computedStatus.descColor"
     />
-    <div>
-      <el-checkbox-group v-model="checkList" class="checkbox-group flex wrap">
+      <el-checkbox-group v-model="checkList" class="flex wrap">
         <el-checkbox
           v-for="(item, index) in computedStatus.options"
           :key="index"
@@ -25,7 +24,6 @@
           <PicItem v-bind="{ ...item, index }" />
         </el-checkbox>
       </el-checkbox-group>
-    </div>
   </div>
 </template>
 
@@ -68,12 +66,6 @@ const checkList = ref([]);
 .picOption {
   height: auto;
   flex-direction: column-reverse;
-  /* 覆盖el-radio的默认样式 */
-  margin-right: 0;
 }
 
-.checkbox-group {
-  width: 100%;
-  justify-content: space-evenly;
-}
 </style>

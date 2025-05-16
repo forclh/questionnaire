@@ -15,8 +15,7 @@
       :titleColor="computedStatus.titleColor"
       :descColor="computedStatus.descColor"
     />
-    <div>
-      <el-radio-group v-model="radioValue" class="radio-group flex wrap">
+      <el-radio-group v-model="radioValue" class="flex wrap">
         <el-radio
           v-for="(item, index) in computedStatus.options"
           :key="index"
@@ -26,7 +25,6 @@
           <PicItem v-bind="{ ...item, index }" />
         </el-radio>
       </el-radio-group>
-    </div>
   </div>
 </template>
 
@@ -69,11 +67,6 @@ const radioValue = ref('');
 .picOption {
   height: auto;
   flex-direction: column-reverse;
-  margin-right: 0; /* 覆盖el-radio的默认样式 */
 }
 
-.radio-group {
-  width: 100%;
-  justify-content: space-evenly;
-}
 </style>
