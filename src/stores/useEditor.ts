@@ -41,5 +41,12 @@ export const useEditorStore = defineStore('editor', {
     setCurrentQuestionIndex(index: number) {
       this.currentQuestionIndex = index;
     },
+    removeQuestion(index: number) {
+      this.questionComs.splice(index, 1);
+      // 如果删除的是题目类型，则减少题目总数
+      if (isQuestionType(this.questionComs[index].name)) {
+        this.questionCount--;
+      }
+    },
   },
 });

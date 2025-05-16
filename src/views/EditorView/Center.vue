@@ -7,13 +7,24 @@
           :class="{ active: editorStore.currentQuestionIndex === index }"
           @click="showEditor(index)"
           :key="element.id"
-          :ref="el => componentRefs[index] = el"
+          :ref="(el) => (componentRefs[index] = el)"
         >
           <component
             :is="element.type"
             :status="element.status"
             :serialNum="questionNumberList[index]"
           />
+          <!-- 删除按钮 -->
+          <div class="delete-btn absolute" v-show="editorStore.currentQuestionIndex === index">
+            <el-button
+              type="danger"
+              size="small"
+              class="ml-10"
+              :icon="Close"
+              circle
+              @click.stop="removeQuestion(index)"
+            ></el-button>
+          </div>
         </div>
       </template>
     </draggable>
@@ -25,6 +36,8 @@ import { useEditorStore } from '@/stores/useEditor';
 import { nextTick, ref, type ComponentPublicInstance } from 'vue';
 import { eventBus } from '@/utils/eventBus';
 import draggable from 'vuedraggable';
+import { Close } from '@element-plus/icons-vue';
+import { ElMessageBox, ElMessage } from 'element-plus';
 // 组合式函数
 import { useQuestionNumber, useQuestionSelect } from '@/composables';
 
@@ -70,6 +83,26 @@ const startDrag = () => {
 
 // 获取题目序号列表
 const questionNumberList = useQuestionNumber(editorStore.questionComs);
+
+// 删除题目
+const removeQuestion = (index: number) => {
+  // 询问是否删除
+  ElMessageBox.confirm('确定删除该题目吗？', '提示', {
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    type: 'warning',
+  })
+    .then(() => {
+      // 点击确定
+      editorStore.removeQuestion(index);
+      editorStore.setCurrentQuestionIndex(-1);
+      ElMessage.success('删除成功');
+    })
+    .catch(() => {
+      // 点击取消
+      ElMessage.info('取消删除');
+    });
+};
 </script>
 
 <style scoped lang="scss">
