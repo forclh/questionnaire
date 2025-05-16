@@ -39,7 +39,7 @@ import {
 } from '@/utils/index.ts';
 
 const props = defineProps<{
-  serialNum: number;
+  serialNum: string;
   status: OptionsStatus;
 }>();
 

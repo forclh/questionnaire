@@ -98,7 +98,7 @@ export function updateInitStatus(comStatus: SchemaType, newMaterialCom: Material
       comStatus.status.title.status = '您的行业是';
       break;
     case 'personalInfoPosition':
-      comStatus.name = 'personalPosition';
+      comStatus.name = 'personalInfoPosition';
       comStatus.status.title.status = '您的职位是';
       break;
     case 'personalInfoCompany':

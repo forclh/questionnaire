@@ -19,7 +19,8 @@ export type QuestionType =
   | 'personalInfoEducation'
   | 'personalInfoOccupation'
   | 'personalInfoAge'
-  | 'personalInfoBirth';
+  | 'personalInfoBirth'
+  | 'dateSelect';
 
 // 非题目类型
 export type NonQuestionType = 'textNote';
@@ -75,6 +76,7 @@ export const QuestionTypeList = [
   'personalInfoOccupation',
   'personalInfoAge',
   'personalInfoBirth',
+  'dateSelect',
 ];
 
 // 判断传入的值是否是题目类型

@@ -26,7 +26,7 @@ import type { TypeStatus } from '@/types/index.ts';
 import { getTextStatus, getCurrentStatus, getStringStatusByCurrentStatus } from '@/utils/index.ts';
 
 const props = defineProps<{
-  serialNum: number;
+  serialNum: string;
   status: TypeStatus;
 }>();
 

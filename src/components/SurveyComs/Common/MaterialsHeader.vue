@@ -18,7 +18,7 @@
 <script setup lang="ts">
 defineProps({
   serialNum: {
-    type: Number,
+    type: String,
     required: true,
   },
   title: {

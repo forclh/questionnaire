@@ -3,10 +3,10 @@
   <!-- 有题目 -->
   <div v-if="editorStore.questionCount > 0">
     <draggable v-model="editorStore.questionComs" item-key="id" @start="startDrag">
-      <template #item="{ element }">
-        <div class="mb-10">
+      <template #item="{ element, index }" >
+        <div class="mb-10" v-show="isQuestionType(element.name)">
           <div class="item">
-            1.{{
+            {{ questionNumberList[index] }}.{{
               element.status.title.status.length > 10
                 ? element.status.title.status.slice(0, 10) + '...'
                 : element.status.title.status
@@ -23,7 +23,13 @@
 <script setup lang="ts">
 import { useEditorStore } from '@/stores/useEditor';
 import draggable from 'vuedraggable';
+import { useQuestionNumber } from '@/utils/hooks';
+import { isQuestionType } from '@/types';
+
 const editorStore = useEditorStore();
+
+// 获取题目序号列表
+const questionNumberList = useQuestionNumber(editorStore.questionComs);
 
 // 拖动时清空编辑器
 const startDrag = () => {

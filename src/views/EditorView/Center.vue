@@ -7,7 +7,11 @@
           :class="{ active: editorStore.currentQuestionIndex === index }"
           @click="showEditor(index)"
         >
-          <component :is="element.type" :status="element.status" :serialNum="1" />
+          <component
+            :is="element.type"
+            :status="element.status"
+            :serialNum="questionNumberList[index]"
+          />
         </div>
       </template>
     </draggable>
@@ -19,6 +23,8 @@ import { useEditorStore } from '@/stores/useEditor';
 import { nextTick, ref } from 'vue';
 import { eventBus } from '@/utils/eventBus';
 import draggable from 'vuedraggable';
+// 组合式函数
+import { useQuestionNumber } from '@/utils/hooks';
 
 // 获取数据仓库
 const editorStore = useEditorStore();
@@ -54,6 +60,9 @@ const showEditor = (index: number) => {
 const startDrag = () => {
   editorStore.setCurrentQuestionIndex(-1);
 };
+
+// 获取题目序号列表
+const questionNumberList = useQuestionNumber(editorStore.questionComs);
 </script>
 
 <style scoped lang="scss">
