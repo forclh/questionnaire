@@ -11,8 +11,10 @@ import {
   setItalic,
   setColor,
 } from '@/stores/actions';
-import type { SchemaType } from '@/types';
+import type { SchemaType, Questionnaire } from '@/types';
 import { isQuestionType } from '@/types';
+// 数据库操作
+import { addQuestionnaire } from '@/db/operation';
 
 export const useEditorStore = defineStore('editor', {
   state: () => ({
@@ -47,6 +49,16 @@ export const useEditorStore = defineStore('editor', {
       if (isQuestionType(this.questionComs[index].name)) {
         this.questionCount--;
       }
+    },
+    // 重置问卷
+    resetQuestionComs() {
+      this.questionComs = [];
+      this.currentQuestionIndex = -1;
+      this.questionCount = 0;
+    },
+    // 保存问卷
+    saveQuestionComs(questionnaire: Questionnaire) {
+      return addQuestionnaire(questionnaire)
     },
   },
 });

@@ -1,13 +1,15 @@
 // 工具库
 
 import { isStringArr, isPicTitleDescStatusArr, isValueStatusArr } from '@/types';
-import type { TextProps, OptionsProps, TypeStatus, SchemaType, MaterialComType } from '@/types';
+import type { TextProps, OptionsProps, TypeStatus, SchemaType, MaterialComType, Questionnaire } from '@/types';
 import {
   genderStatus,
   OccupationStatus,
   educationStatus,
   ageStatus,
 } from '@/config/defaultStatus/initStatus';
+import type { TableColumnCtx } from 'element-plus';
+
 export function getTextStatus(props: TextProps) {
   return props.status;
 }
@@ -125,4 +127,18 @@ export function updateInitStatus(comStatus: SchemaType, newMaterialCom: Material
       comStatus.status.title.status = '请选择出生日期';
       break;
   }
+}
+
+
+// 处理日期格式
+export function formatDate(row: Questionnaire, column: TableColumnCtx<Questionnaire>, cellValue: number) {
+  const options: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+  };
+  return new Intl.DateTimeFormat('zh-CN', options).format(new Date(cellValue));
 }

@@ -8,16 +8,14 @@
     </div>
     <!-- 问卷列表 -->
     <el-table :data="tableData" style="width: 100%" border>
-      <el-table-column prop="createDate" label="创建日期" width="150" />
+      <el-table-column prop="createTime" label="创建日期" width="200" :formatter="formatDate" />
       <el-table-column prop="title" label="问卷标题" />
-      <el-table-column prop="surveyCount" label="题目数" width="150" align="center" />
-      <el-table-column prop="updateDate" label="最近更新日期" width="150" align="center" />
+      <el-table-column prop="questionNumber" label="题目数" width="150" align="center" />
+      <el-table-column prop="updateTime" label="最近更新日期" width="200" align="center" :formatter="formatDate" />
       <el-table-column label="操作" width="300" align="center">
-        <template>
-          <el-button type="primary" size="small" link>查看问卷</el-button>
-          <el-button type="primary" size="small" link>编辑</el-button>
-          <el-button type="primary" size="small" link>删除</el-button>
-        </template>
+        <el-button type="primary" size="small" link>查看问卷</el-button>
+        <el-button type="primary" size="small" link>编辑</el-button>
+        <el-button type="primary" size="small" link>删除</el-button>
       </el-table-column>
     </el-table>
   </div>
@@ -25,12 +23,16 @@
 
 <script setup lang="ts">
 import { Plus, Compass } from '@element-plus/icons-vue';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 // 路由
 import { useRouter } from 'vue-router';
-const router = useRouter();
+import { queryAllQuestionnaire } from '@/db/operation';
+import { ElMessage } from 'element-plus';
+import type { Questionnaire } from '@/types';
+import { formatDate } from '@/utils';
 
-const tableData = ref([]);
+const router = useRouter();
+const tableData = ref<Questionnaire[]>([]);
 
 const goToEditor = () => {
   localStorage.setItem('activeView', 'editor');
@@ -41,6 +43,20 @@ const goToMarket = () => {
   localStorage.setItem('activeView', 'materials');
   router.push('/materials');
 };
+
+// 获取问卷列表
+const getQuestionnaireList = async () => {
+  try {
+    const questionnaireList = await queryAllQuestionnaire();
+    tableData.value = questionnaireList;
+  } catch (error) {
+    ElMessage.info('获取问卷列表失败');
+  }
+};
+
+onMounted(() => {
+  getQuestionnaireList();
+});
 </script>
 
 <style lang="scss" scoped></style>

@@ -1,5 +1,5 @@
 <template>
-  <Header />
+  <Header :isEditor="false" />
   <div>
     <h1 class="text-center font-weight-100 p0">组件市场</h1>
     <div class="materials-container flex mc">

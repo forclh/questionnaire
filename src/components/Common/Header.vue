@@ -3,7 +3,15 @@
     <div class="left flex justify-content-center align-items-center">
       <el-button circle size="small" :icon="ArrowLeft" @click="goHome" />
     </div>
-    <div class="center"></div>
+    <div class="center flex align-items-center pl-15 pr-15">
+      <div v-if="isEditor">
+        <!-- 说明此时是编辑器面板 -->
+        <div>
+          <el-button type="danger" size="small" @click="resetQuestionnaire"> 重置问卷 </el-button>
+          <el-button type="success" size="small" @click="saveQuestionnaire"> 保存问卷 </el-button>
+        </div>
+      </div>
+    </div>
     <div class="right flex align-items-center justify-content-center">
       <el-avatar :size="30" :src="avatar" />
     </div>
@@ -14,12 +22,69 @@
 import { ArrowLeft } from '@element-plus/icons-vue';
 import { useRouter } from 'vue-router';
 import avatar from '@/assets/imgs/avatar.jpg';
+import { ElMessage, ElMessageBox } from 'element-plus';
+import { useEditorStore } from '@/stores/useEditor';
+import type { Questionnaire } from '@/types';
+
+defineProps({
+  isEditor: {
+    type: Boolean,
+    default: true,
+  },
+});
 
 const router = useRouter();
+const editorStore = useEditorStore();
 
 const goHome = () => {
   localStorage.setItem('activeView', 'home');
   router.push('/');
+};
+
+// 重置问卷
+const resetQuestionnaire = async () => {
+  try {
+    await ElMessageBox.confirm('确定要重置问卷嘛？', '提示', {
+    confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning',
+    });
+    ElMessage.success('重置问卷成功');
+    editorStore.resetQuestionComs();
+  } catch (error) {
+    ElMessage.info('取消重置');
+  }
+};
+
+// 保存问卷
+const saveQuestionnaire = async () => {
+  try {
+    // 输入标题提示框
+    const { value } = await ElMessageBox.prompt('请输入问卷标题', '提示', {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'info',
+    });
+    // 构建问卷数据
+    const questionnaire: Questionnaire = {
+      title: value,
+      createTime: Date.now(),
+      updateTime: Date.now(),
+      questionNumber: editorStore.questionCount,
+      // indexDB可以存无方法的对象数组
+      questionComs: JSON.parse(JSON.stringify(editorStore.questionComs)), // TODO：这种方式恢复时存在问题
+    };
+
+    // 保存问卷
+    await editorStore.saveQuestionComs(questionnaire);
+    ElMessage.success('保存问卷成功');
+  } catch (error) {
+    if (error === 'cancel') {
+      ElMessage.info('已取消保存');
+    } else {
+      ElMessage.info('问卷保存失败');
+    }
+  }
 };
 </script>
 
