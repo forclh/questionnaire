@@ -271,5 +271,11 @@ export const useEditorStore = defineStore('editor', {
     saveQuestionComs(questionnaire: Questionnaire) {
       return addQuestionnaire(questionnaire);
     },
+    // 还原问卷仓库的状态（questionComs, questionCount）
+    restoreQuestionnaire(questionnaire: Questionnaire) {
+      this.questionComs = questionnaire.questionComs;
+      this.questionCount = questionnaire.questionNumber;
+      this.currentQuestionIndex = -1;
+    },
   },
 });

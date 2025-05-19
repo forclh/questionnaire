@@ -11,11 +11,21 @@
       <el-table-column prop="createTime" label="创建日期" width="200" :formatter="formatDate" />
       <el-table-column prop="title" label="问卷标题" />
       <el-table-column prop="questionNumber" label="题目数" width="150" align="center" />
-      <el-table-column prop="updateTime" label="最近更新日期" width="200" align="center" :formatter="formatDate" />
+      <el-table-column
+        prop="updateTime"
+        label="最近更新日期"
+        width="200"
+        align="center"
+        :formatter="formatDate"
+      />
       <el-table-column label="操作" width="300" align="center">
-        <el-button type="primary" size="small" link>查看问卷</el-button>
-        <el-button type="primary" size="small" link>编辑</el-button>
-        <el-button type="primary" size="small" link>删除</el-button>
+        <template #default="scope">
+          <el-button type="primary" size="small" link @click="goToPreview(scope.row.id)"
+            >查看问卷</el-button
+          >
+          <el-button type="primary" size="small" link>编辑</el-button>
+          <el-button type="primary" size="small" link>删除</el-button>
+        </template>
       </el-table-column>
     </el-table>
   </div>
@@ -57,6 +67,16 @@ const getQuestionnaireList = async () => {
 onMounted(() => {
   getQuestionnaireList();
 });
+
+// 跳转到预览页面
+const goToPreview = (id: number) => {
+  router.push({
+    path: `/preview/${id}`,
+    state: {
+      from: 'home',
+    },
+  });
+};
 </script>
 
 <style lang="scss" scoped></style>

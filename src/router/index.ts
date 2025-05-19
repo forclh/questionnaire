@@ -1,5 +1,7 @@
 import { useMaterialStore } from '@/stores/useMaterial';
 import { createRouter, createWebHistory } from 'vue-router';
+import type { MaterialComType } from '@/types';
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -190,6 +192,11 @@ const router = createRouter({
         },
       ],
     },
+    {
+      path: '/preview/:id(\\d+)',  // 预览页面
+      name: 'preview',
+      component: () => import('@/views/Preview.vue'),
+    },
   ],
 });
 
@@ -198,7 +205,7 @@ router.beforeEach((to, from, next) => {
   const activeView = localStorage.getItem('activeView');
   const store = useMaterialStore();
   if (activeView === 'materials' && to.name) {
-    store.setCurrentMaterialCom(to.name as string);
+    store.setCurrentMaterialCom(to.name as MaterialComType);
   }
   next();
 });

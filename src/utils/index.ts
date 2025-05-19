@@ -9,6 +9,7 @@ import {
   ageStatus,
 } from '@/config/defaultStatus/initStatus';
 import type { TableColumnCtx } from 'element-plus';
+import { componentMap } from '@/config/componentMap';
 
 export function getTextStatus(props: TextProps) {
   return props.status;
@@ -141,4 +142,17 @@ export function formatDate(row: Questionnaire, column: TableColumnCtx<Questionna
     second: '2-digit',
   };
   return new Intl.DateTimeFormat('zh-CN', options).format(new Date(cellValue));
+}
+
+// 还原组件状态
+export function restoreComponentsStatus(questionComs: SchemaType[]) {
+  questionComs.forEach((item) => {
+    // 业务组件还原
+    item.type = componentMap[item.name as keyof typeof componentMap]
+    // 编辑组件还原
+    for (let key in item.status) {
+      const name = item.status[key].name
+      item.status[key].editCom = componentMap[name as keyof typeof componentMap]
+    }
+  })
 }
