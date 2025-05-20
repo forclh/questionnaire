@@ -260,9 +260,12 @@ export const useEditorStore = defineStore('editor', {
       this.currentQuestionIndex = index;
     },
     removeQuestion(index: number) {
+      // 在删除前先检查是否为题目类型
+      const isQuestion = isQuestionType(this.questionComs[index].name);
+      // 删除元素
       this.questionComs.splice(index, 1);
-      // 如果删除的是题目类型，则减少题目总数
-      if (isQuestionType(this.questionComs[index].name)) {
+      // 如果是题目类型，减少题目总数
+      if (isQuestion) {
         this.questionCount--;
       }
     },
