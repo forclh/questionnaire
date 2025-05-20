@@ -1,5 +1,5 @@
 // 定义store的类型
-import type { TextProps, OptionsProps, PicLink, SchemaType } from '@/types';
+import type { TextProps, OptionsProps, PicLink, SchemaType, VueComType } from '@/types';
 // 题目类型
 export type QuestionType =
   | 'singleSelect'
@@ -26,6 +26,27 @@ export type QuestionType =
 export type NonQuestionType = 'textNote';
 // 业务组件类型（题目类型 + 非题目类型）
 export type MaterialComType = QuestionType | NonQuestionType;
+
+// 编辑组件类型
+export type EditorComType =
+  | 'colorEditor'
+  | 'dateEditor'
+  | 'descEditor'
+  | 'italicEditor'
+  | 'optionsEditor'
+  | 'picOptionsEditor'
+  | 'positionEditor'
+  | 'sizeEditor'
+  | 'textInputTypeEditor'
+  | 'textTypeEditor'
+  | 'titleEditor'
+  | 'weightEditor';
+
+// 所有组件类型
+export type AllComType = MaterialComType | EditorComType;
+
+// 组件映射类型
+export type ComponentMapType = Record<AllComType, VueComType>;
 
 // actions
 export interface Actions {

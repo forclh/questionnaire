@@ -1,7 +1,14 @@
 // 工具库
 
 import { isStringArr, isPicTitleDescStatusArr, isValueStatusArr } from '@/types';
-import type { TextProps, OptionsProps, TypeStatus, SchemaType, MaterialComType, Questionnaire } from '@/types';
+import type {
+  TextProps,
+  OptionsProps,
+  TypeStatus,
+  SchemaType,
+  MaterialComType,
+  Questionnaire,
+} from '@/types';
 import {
   genderStatus,
   OccupationStatus,
@@ -10,7 +17,7 @@ import {
 } from '@/config/defaultStatus/initStatus';
 import type { TableColumnCtx } from 'element-plus';
 import { componentMap } from '@/config/componentMap';
-
+import type { EditorComType } from '@/types';
 export function getTextStatus(props: TextProps) {
   return props.status;
 }
@@ -130,9 +137,12 @@ export function updateInitStatus(comStatus: SchemaType, newMaterialCom: Material
   }
 }
 
-
 // 处理日期格式
-export function formatDate(row: Questionnaire, column: TableColumnCtx<Questionnaire>, cellValue: number) {
+export function formatDate(
+  row: Questionnaire,
+  column: TableColumnCtx<Questionnaire>,
+  cellValue: number,
+) {
   const options: Intl.DateTimeFormatOptions = {
     year: 'numeric',
     month: '2-digit',
@@ -148,11 +158,11 @@ export function formatDate(row: Questionnaire, column: TableColumnCtx<Questionna
 export function restoreComponentsStatus(questionComs: SchemaType[]) {
   questionComs.forEach((item) => {
     // 业务组件还原
-    item.type = componentMap[item.name as keyof typeof componentMap]
+    item.type = componentMap[item.name];
     // 编辑组件还原
     for (let key in item.status) {
-      const name = item.status[key].name
-      item.status[key].editCom = componentMap[name as keyof typeof componentMap]
+      const name = item.status[key].name as EditorComType;
+      item.status[key].editCom = componentMap[name];
     }
-  })
+  });
 }
