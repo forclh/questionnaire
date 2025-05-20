@@ -12,7 +12,7 @@
           <component
             :is="element.type"
             :status="element.status"
-            :serialNum="questionNumberList[index]"
+            :serialNum="questionSerialNumber[index]"
           />
           <!-- 删除按钮 -->
           <div class="delete-btn absolute" v-show="editorStore.currentQuestionIndex === index">
@@ -39,7 +39,7 @@ import draggable from 'vuedraggable';
 import { Close } from '@element-plus/icons-vue';
 import { ElMessageBox, ElMessage } from 'element-plus';
 // 组合式函数
-import { useQuestionNumber, useQuestionSelect } from '@/composables';
+import { useQuestionSerialNumber, useQuestionSelect } from '@/composables';
 
 // 获取数据仓库
 const editorStore = useEditorStore();
@@ -82,7 +82,7 @@ const startDrag = () => {
 };
 
 // 获取题目序号列表
-const questionNumberList = useQuestionNumber(editorStore.questionComs);
+const questionSerialNumber = useQuestionSerialNumber(editorStore.questionComs);
 
 // 删除题目
 const removeQuestion = (index: number) => {

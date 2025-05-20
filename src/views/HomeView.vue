@@ -72,6 +72,7 @@ onMounted(() => {
 const goToPreview = (id: number) => {
   router.push({
     path: `/preview/${id}`,
+    // 通过state参数携带一些状态信息，后续可以通过history.state.from获取
     state: {
       from: 'home',
     },

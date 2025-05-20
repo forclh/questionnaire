@@ -1,3 +1,3 @@
 // 入口函数
-export { useQuestionNumber } from './useQuestionNumber';
+export { useQuestionSerialNumber } from './useQuestionSerialNumber';
 export { useQuestionSelect } from './useQuestionSelect';
