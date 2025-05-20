@@ -23,8 +23,12 @@
           <el-button type="primary" size="small" link @click="goToPreview(scope.row.id)"
             >查看问卷</el-button
           >
-          <el-button type="primary" size="small" link>编辑</el-button>
-          <el-button type="primary" size="small" link>删除</el-button>
+          <el-button type="primary" size="small" link @click="editQuestionnaire(scope.row.id)"
+            >编辑</el-button
+          >
+          <el-button type="primary" size="small" link @click="deleteQuestionnaire(scope.row.id)"
+            >删除</el-button
+          >
         </template>
       </el-table-column>
     </el-table>
@@ -37,16 +41,18 @@ import { ref, onMounted } from 'vue';
 // 路由
 import { useRouter } from 'vue-router';
 import { queryAllQuestionnaire } from '@/db/operation';
-import { ElMessage } from 'element-plus';
+import { ElMessage, ElMessageBox } from 'element-plus';
 import type { Questionnaire } from '@/types';
 import { formatDate } from '@/utils';
+import { useEditorStore } from '@/stores/useEditor';
 
 const router = useRouter();
+const editorStore = useEditorStore();
 const tableData = ref<Questionnaire[]>([]);
 
 const goToEditor = () => {
   localStorage.setItem('activeView', 'editor');
-  router.push('/editor');
+  router.push('/editor/questionTypeGroup');
 };
 
 const goToMarket = () => {
@@ -77,6 +83,28 @@ const goToPreview = (id: number) => {
       from: 'home',
     },
   });
+};
+
+// 编辑问卷
+const editQuestionnaire = (id: number) => {
+  router.push({
+    path: `/editor/${id}/questionTypeGroup`,
+  });
+};
+
+// 删除问卷
+const deleteQuestionnaire = async (id: number) => {
+  try {
+    await ElMessageBox.confirm('确定删除该问卷吗？', '提示', {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+    });
+    await editorStore.removeQuestionnaireById(id);
+    ElMessage.success('删除问卷成功');
+    getQuestionnaireList();
+  } catch (error) {
+    ElMessage.info('取消删除');
+  }
 };
 </script>
 

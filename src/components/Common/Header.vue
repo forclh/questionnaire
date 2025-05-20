@@ -3,13 +3,21 @@
     <div class="left flex justify-content-center align-items-center">
       <el-button circle size="small" :icon="ArrowLeft" @click="goHome" />
     </div>
-    <div class="center flex align-items-center pl-15 pr-15">
+    <div class="center flex align-items-center space-between pl-15 pr-15">
+      <!-- 左侧按钮组 -->
       <div v-if="isEditor">
         <!-- 说明此时是编辑器面板 -->
-        <div>
+        <div v-if="!questionnaireId">
           <el-button type="danger" size="small" @click="resetQuestionnaire"> 重置问卷 </el-button>
           <el-button type="success" size="small" @click="saveQuestionnaire"> 保存问卷 </el-button>
         </div>
+        <div v-else>
+          <el-button type="warning" size="small" @click="updateQuestionnaire"> 更新问卷 </el-button>
+        </div>
+      </div>
+      <!-- 预览按钮 -->
+      <div v-if="questionnaireId">
+        <el-button type="primary" size="small" @click="goToPreview"> 预览问卷 </el-button>
       </div>
     </div>
     <div class="right flex align-items-center justify-content-center">
@@ -26,10 +34,14 @@ import { ElMessage, ElMessageBox } from 'element-plus';
 import { useEditorStore } from '@/stores/useEditor';
 import type { Questionnaire } from '@/types';
 
-defineProps({
+const props = defineProps({
   isEditor: {
     type: Boolean,
     default: true,
+  },
+  questionnaireId: {
+    type: String,
+    default: '',
   },
 });
 
@@ -45,7 +57,7 @@ const goHome = () => {
 const resetQuestionnaire = async () => {
   try {
     await ElMessageBox.confirm('确定要重置问卷嘛？', '提示', {
-    confirmButtonText: '确定',
+      confirmButtonText: '确定',
       cancelButtonText: '取消',
       type: 'warning',
     });
@@ -76,14 +88,59 @@ const saveQuestionnaire = async () => {
     };
 
     // 保存问卷
-    await editorStore.saveQuestionComs(questionnaire);
+    const id = await editorStore.saveQuestionComs(questionnaire);
     ElMessage.success('保存问卷成功');
+    router.push(`/editor/${id}/questionTypeGroup`);
   } catch (error) {
     if (error === 'cancel') {
       ElMessage.info('已取消保存');
     } else {
       ElMessage.info('问卷保存失败');
     }
+  }
+};
+
+// 更新问卷
+const updateQuestionnaire = async () => {
+  try {
+    await ElMessageBox.confirm('确定要更新问卷嘛？', '提示', {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning',
+    });
+    // 构建问卷数据
+    const questionnaire: Partial<Questionnaire> = {
+      updateTime: Date.now(),
+      questionNumber: editorStore.questionCount,
+      questionComs: JSON.parse(JSON.stringify(editorStore.questionComs)),
+    };
+    // 更新问卷
+    editorStore.updateQuestionnaire(Number(props.questionnaireId), questionnaire);
+    ElMessage.success('更新问卷成功');
+  } catch (error) {
+    ElMessage.info('取消更新');
+  }
+};
+
+// 跳转预览页面
+const goToPreview = async () => {
+  try {
+    await ElMessageBox.confirm('预览会自动保存问卷，是否跳转预览？', '提示', {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'info',
+    });
+    // 更新问卷
+    await updateQuestionnaire();
+    // 跳转预览
+    router.push({
+      path: `/preview/${props.questionnaireId}`,
+      state: {
+        from: 'editor',
+      },
+    });
+  } catch (e) {
+    ElMessage.info('已取消跳转');
   }
 };
 </script>

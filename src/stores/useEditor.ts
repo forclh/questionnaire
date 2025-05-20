@@ -14,7 +14,12 @@ import {
 import type { SchemaType, Questionnaire, TypeStatus } from '@/types';
 import { isQuestionType } from '@/types';
 // 数据库操作
-import { addQuestionnaire } from '@/db/operation';
+import {
+  addQuestionnaire,
+  updateQuestionnaireById,
+  queryQuestionnaireById,
+  deleteQuestionnaireById,
+} from '@/db/operation';
 // 编辑器组件
 import TextTypeEditor from '@/components/SurveyComs/EditItems/TextTypeEditor.vue';
 import TitleEditor from '@/components/SurveyComs/EditItems/TitleEditor.vue';
@@ -276,6 +281,18 @@ export const useEditorStore = defineStore('editor', {
       this.questionComs = questionnaire.questionComs;
       this.questionCount = questionnaire.questionNumber;
       this.currentQuestionIndex = -1;
+    },
+    // 更新问卷
+    updateQuestionnaire(id: number, questionnaire: Partial<Questionnaire>) {
+      return updateQuestionnaireById(id, questionnaire);
+    },
+    // 根据id查询问卷内容
+    getQuestionnaireById(id: number) {
+      return queryQuestionnaireById(id);
+    },
+    // 根据id删除问卷
+    removeQuestionnaireById(id: number) {
+      return deleteQuestionnaireById(id);
     },
   },
 });

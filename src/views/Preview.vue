@@ -30,8 +30,7 @@
 
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router';
-import { queryQuestionnaireById } from '@/db/operation';
-import { onMounted, ref } from 'vue';
+import { onMounted, computed } from 'vue';
 import { restoreComponentsStatus } from '@/utils';
 import { useEditorStore } from '@/stores/useEditor';
 import { useQuestionSerialNumber } from '@/composables';
@@ -44,18 +43,18 @@ const editorStore = useEditorStore();
 const id = Number(route.params.id);
 
 // 获取题目序号
-const questionSerialNumber = ref<string[]>([]);
+const questionSerialNumber = computed(
+  () => useQuestionSerialNumber(editorStore.questionComs).value,
+);
 
 // 根据id获取问卷
 const getQuestionnaire = async () => {
-  const res = await queryQuestionnaireById(id);
+  const res = await editorStore.getQuestionnaireById(id);
   if (res) {
     // 拿到数据后需要重新还原组件
     restoreComponentsStatus(res.questionComs);
     // 还原问卷仓库的状态
     editorStore.restoreQuestionnaire(res);
-    // 在数据加载完成后重新计算序号
-    questionSerialNumber.value = useQuestionSerialNumber(editorStore.questionComs).value;
   }
 };
 

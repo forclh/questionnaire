@@ -13,7 +13,7 @@ export function useQuestionSerialNumber(questionComs: SchemaType[]) {
         // 填充0使序号为两位
         return questionNumber < 10 ? `0${questionNumber++}` : `${questionNumber++}`;
       }
-      return null;
+      return '';
     });
   });
 }

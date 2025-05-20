@@ -33,7 +33,7 @@
 
 <script setup lang="ts">
 import { useEditorStore } from '@/stores/useEditor';
-import { nextTick, ref, type ComponentPublicInstance } from 'vue';
+import { nextTick, ref, type ComponentPublicInstance, computed } from 'vue';
 import { eventBus } from '@/utils/eventBus';
 import draggable from 'vuedraggable';
 import { Close } from '@element-plus/icons-vue';
@@ -81,8 +81,10 @@ const startDrag = () => {
   editorStore.setCurrentQuestionIndex(-1);
 };
 
-// 获取题目序号列表
-const questionSerialNumber = useQuestionSerialNumber(editorStore.questionComs);
+// 获取题目序号
+const questionSerialNumber = computed(
+  () => useQuestionSerialNumber(editorStore.questionComs).value,
+);
 
 // 删除题目
 const removeQuestion = (index: number) => {

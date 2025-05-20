@@ -12,10 +12,9 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: '/editor',
+      path: '/editor/:id(\\d+)?',
       name: 'editor',
       component: () => import('@/views/EditorView/index.vue'),
-      redirect: '/editor/questionTypeGroup',
       children: [
         {
           path: 'questionTypeGroup',
@@ -194,7 +193,7 @@ const router = createRouter({
       ],
     },
     {
-      path: '/preview/:id(\\d+)',  // 预览页面
+      path: '/preview/:id(\\d+)', // 预览页面
       name: 'preview',
       component: () => import('@/views/Preview.vue'),
     },

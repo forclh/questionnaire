@@ -1,7 +1,7 @@
 <template>
   <!-- 顶部导航栏 -->
   <div class="header">
-    <Header :isEditor="true" />
+    <Header :isEditor="true" :questionnaireId="questionnaireId" />
   </div>
   <!-- 编辑器主体区域 -->
   <div class="container">
@@ -17,14 +17,31 @@
 </template>
 
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
 import Header from '@/components/Common/Header.vue';
 import LeftSide from '@/views/EditorView/LeftSide/index.vue';
 import RightSide from '@/views/EditorView/RightSide.vue';
 import Center from '@/views/EditorView/Center.vue';
 import { useEditorStore } from '@/stores/useEditor';
+import { computed } from 'vue';
+import { restoreComponentsStatus } from '@/utils';
 
-// 使用数据仓库（为了在开发者工具中查看数据仓库）
-useEditorStore();
+const route = useRoute();
+
+// 问卷id
+const questionnaireId = computed(() => (route.params.id ? String(route.params.id) : ''));
+
+const editorStore = useEditorStore();
+editorStore.resetQuestionComs();
+
+if (questionnaireId) {
+  editorStore.getQuestionnaireById(Number(questionnaireId.value)).then((res) => {
+    if (res) {
+      restoreComponentsStatus(res.questionComs);
+      editorStore.restoreQuestionnaire(res);
+    }
+  });
+}
 </script>
 
 <style scoped>
