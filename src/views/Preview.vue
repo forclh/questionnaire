@@ -4,10 +4,10 @@
       <!-- 按钮组 -->
       <div class="button-group flex space-between align-items-center">
         <!-- 左边按钮 -->
-        <div class="flex space-between">
+        <div class="flex space-between no-print">
           <el-button type="danger" size="small" @click="goBack">返回</el-button>
           <el-button type="success" size="small">生成在线问卷</el-button>
-          <el-button type="warning" size="small">生成本地PDF</el-button>
+          <el-button type="warning" size="small" @click="generatePDF">生成本地PDF</el-button>
         </div>
         <!-- 题目数量 -->
         <div class="mr-15">
@@ -15,7 +15,7 @@
         </div>
       </div>
       <!-- 问卷 -->
-      <div class="content-group no-border">
+      <div class="no-border content-group">
         <div class="content mb-10" v-for="(item, index) in editorStore.questionComs" :key="item.id">
           <component
             :is="item.type"
@@ -31,9 +31,11 @@
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router';
 import { onMounted, computed } from 'vue';
+import { ElMessage } from 'element-plus';
 import { restoreComponentsStatus } from '@/utils';
 import { useEditorStore } from '@/stores/useEditor';
 import { useQuestionSerialNumber } from '@/composables';
+import { isUnsuitablePDFComType } from '@/types';
 
 const route = useRoute();
 const router = useRouter();
@@ -70,6 +72,19 @@ const goBack = () => {
   }
 };
 
+// 生成本地PDF
+const generatePDF = () => {
+  // 1. 检查当前的问卷是否存在不适合生成PDF的业务组件
+  const isUnsuitable = editorStore.questionComs.some((item) => isUnsuitablePDFComType(item.name));
+  if (isUnsuitable) {
+    ElMessage.warning('当前问卷存在不适合生成PDF的业务组件');
+    return;
+  }
+  // 2. 生成PDF
+  // 直接使用浏览器接口生成pdf
+  window.print();
+};
+
 onMounted(() => {
   getQuestionnaire();
 });
@@ -101,5 +116,17 @@ onMounted(() => {
   border-radius: var(--border-radius-lg);
   background-color: var(--white);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+// 媒体查询打印时隐藏边框和打印按钮（打印时会引用相应的样式）
+@media print {
+  .no-border {
+    border: none;
+    box-shadow: none;
+  }
+
+  .no-print {
+    display: none;
+  }
 }
 </style>

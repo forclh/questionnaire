@@ -20,7 +20,8 @@ export type QuestionType =
   | 'personalInfoOccupation'
   | 'personalInfoAge'
   | 'personalInfoBirth'
-  | 'dateSelect';
+  | 'dateSelect'
+  | 'scoreSelect';
 
 // 非题目类型
 export type NonQuestionType = 'textNote';
@@ -102,4 +103,17 @@ export const QuestionTypeList = [
 // 判断传入的值是否是题目类型
 export function isQuestionType(type: string): type is QuestionType {
   return QuestionTypeList.includes(type as QuestionType);
+}
+
+// 不适合生成PDF的组件类型(下拉选择、日期选择、评分选择)
+export const unsuitablePDFComType = [
+  'optionSelect',
+  'dateSelect',
+  'scoreSelect',
+  'personalInfoBirth',
+];
+
+// 判断传入的值是否是不适合生成PDF的组件类型
+export function isUnsuitablePDFComType(type: string): Boolean {
+  return unsuitablePDFComType.includes(type);
 }
