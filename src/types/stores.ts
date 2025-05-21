@@ -117,3 +117,8 @@ export const unsuitablePDFComType = [
 export function isUnsuitablePDFComType(type: string): Boolean {
   return unsuitablePDFComType.includes(type);
 }
+
+export type QuizData = {
+  questionCount: number;
+  questionComs: SchemaType[];
+};

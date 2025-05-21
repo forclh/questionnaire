@@ -6,7 +6,7 @@
         <!-- 左边按钮 -->
         <div class="flex space-between no-print">
           <el-button type="danger" size="small" @click="goBack">返回</el-button>
-          <el-button type="success" size="small">生成在线问卷</el-button>
+          <el-button type="success" size="small" @click="generateOnline">生成在线问卷</el-button>
           <el-button type="warning" size="small" @click="generatePDF">生成本地PDF</el-button>
         </div>
         <!-- 题目数量 -->
@@ -25,13 +25,22 @@
         </div>
       </div>
     </div>
+    <el-dialog v-model="dialogVisible" title="生成在线问卷" width="500">
+      分享链接：<a :href="quizLink" target="_blank">{{ quizLink }}</a>
+      <template #footer>
+        <div class="dialog-footer">
+          <el-button type="primary" @click="copyLink">复制链接</el-button>
+        </div>
+      </template>
+    </el-dialog>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router';
-import { onMounted, computed } from 'vue';
+import { onMounted, computed, ref } from 'vue';
 import { ElMessage } from 'element-plus';
+import { v4 as uuidv4 } from 'uuid';
 import { restoreComponentsStatus } from '@/utils';
 import { useEditorStore } from '@/stores/useEditor';
 import { useQuestionSerialNumber } from '@/composables';
@@ -40,6 +49,9 @@ import { isUnsuitablePDFComType } from '@/types';
 const route = useRoute();
 const router = useRouter();
 const editorStore = useEditorStore();
+
+let dialogVisible = ref(false); // 控制对话框是否显示
+let quizLink = ref(''); // 存储在线答题的链接
 
 // 获取路由参数
 const id = Number(route.params.id);
@@ -83,6 +95,37 @@ const generatePDF = () => {
   // 2. 生成PDF
   // 直接使用浏览器接口生成pdf
   window.print();
+};
+
+// 生成在线问卷
+const generateOnline = async () => {
+  // 1.将问卷数据传递到服务器，服务器存储来内存中（项目简化后做法）
+  const id = uuidv4();
+  // 2. 将问卷内容和id传递到服务器
+  await fetch('/api/saveQuiz', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      id,
+      quizData: {
+        questionComs: JSON.stringify(editorStore.questionComs),
+        questionCount: editorStore.questionCount,
+      },
+    }),
+  });
+  // 3.构建链接id，匹配服务器
+  quizLink.value = `${window.location.origin}/quiz/${id}`;
+  // 4.显示弹出框
+  dialogVisible.value = true;
+};
+
+// 复制链接
+const copyLink = () => {
+  dialogVisible.value = false;
+  navigator.clipboard.writeText(quizLink.value);
+  ElMessage.success('在线答题连接已复制');
 };
 
 onMounted(() => {
