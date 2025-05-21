@@ -103,11 +103,6 @@ const saveQuestionnaire = async () => {
 // 更新问卷
 const updateQuestionnaire = async () => {
   try {
-    await ElMessageBox.confirm('确定要更新问卷嘛？', '提示', {
-      confirmButtonText: '确定',
-      cancelButtonText: '取消',
-      type: 'warning',
-    });
     // 构建问卷数据
     const questionnaire: Partial<Questionnaire> = {
       updateTime: Date.now(),
@@ -115,10 +110,10 @@ const updateQuestionnaire = async () => {
       questionComs: JSON.parse(JSON.stringify(editorStore.questionComs)),
     };
     // 更新问卷
-    editorStore.updateQuestionnaire(Number(props.questionnaireId), questionnaire);
+    await editorStore.updateQuestionnaire(Number(props.questionnaireId), questionnaire);
     ElMessage.success('更新问卷成功');
   } catch (error) {
-    ElMessage.info('取消更新');
+    ElMessage.info('更新问卷失败');
   }
 };
 
