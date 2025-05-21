@@ -15,7 +15,7 @@
       :descColor="computedStatus.descColor"
     />
     <div class="checkbox-group">
-      <el-checkbox-group v-model="checkList">
+      <el-checkbox-group v-model="checkList" @click.stop @change="emitAnswer(checkList)">
         <el-checkbox
           v-for="(item, index) in computedStatus.options"
           :key="index"
@@ -37,11 +37,16 @@ import {
   getCurrentStatus,
   getStringStatusByCurrentStatus,
 } from '@/utils/index.ts';
+import { useAnswer } from '@/composables';
 
 const props = defineProps<{
   serialNum: string;
   status: OptionsStatus;
 }>();
+
+// 通过自定义事件提交答案
+const emits = defineEmits(['updateAnswer']);
+const { emitAnswer } = useAnswer(emits);
 
 const computedStatus = computed(() => ({
   title: getTextStatus(props.status.title),

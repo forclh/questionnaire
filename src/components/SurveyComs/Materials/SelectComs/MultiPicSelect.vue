@@ -14,16 +14,21 @@
       :titleColor="computedStatus.titleColor"
       :descColor="computedStatus.descColor"
     />
-      <el-checkbox-group v-model="checkList" class="flex wrap">
-        <el-checkbox
-          v-for="(item, index) in computedStatus.options"
-          :key="index"
-          :value="item.picTitle"
-          class="picOption flex mb-15"
-        >
-          <PicItem v-bind="{ ...item, index }" />
-        </el-checkbox>
-      </el-checkbox-group>
+    <el-checkbox-group
+      v-model="checkList"
+      class="flex wrap"
+      @click.stop
+      @change="emitAnswer(checkList)"
+    >
+      <el-checkbox
+        v-for="(item, index) in computedStatus.options"
+        :key="index"
+        :value="item.picTitle"
+        class="picOption flex mb-15"
+      >
+        <PicItem v-bind="{ ...item, index }" />
+      </el-checkbox>
+    </el-checkbox-group>
   </div>
 </template>
 
@@ -38,6 +43,10 @@ import {
   getPicTitleDescStatusArr,
   getStringStatusByCurrentStatus,
 } from '@/utils/index.ts';
+import { useAnswer } from '@/composables';
+
+const emits = defineEmits(['updateAnswer']);
+const { emitAnswer } = useAnswer(emits);
 
 const props = defineProps<{
   serialNum: string;
@@ -67,5 +76,4 @@ const checkList = ref([]);
   height: auto;
   flex-direction: column-reverse;
 }
-
 </style>

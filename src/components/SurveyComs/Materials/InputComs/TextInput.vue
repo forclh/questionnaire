@@ -14,8 +14,18 @@
       :titleColor="computedStatus.titleColor"
       :descColor="computedStatus.descColor"
     />
-    <el-input v-model="inputValue" v-if="computedStatus.type === 0"></el-input>
-    <el-input v-model="inputValue" type="textarea" :rows="5" v-else></el-input>
+    <el-input
+      v-model="inputValue"
+      v-if="computedStatus.type === 0"
+      @change="emitAnswer(inputValue)"
+    />
+    <el-input
+      v-model="inputValue"
+      type="textarea"
+      :rows="5"
+      v-else
+      @change="emitAnswer(inputValue)"
+    ></el-input>
   </div>
 </template>
 
@@ -24,6 +34,10 @@ import { computed, ref } from 'vue';
 import MaterialsHeader from '@/components/SurveyComs/Common/MaterialsHeader.vue';
 import type { TypeStatus } from '@/types/index.ts';
 import { getTextStatus, getCurrentStatus, getStringStatusByCurrentStatus } from '@/utils/index.ts';
+import { useAnswer } from '@/composables';
+
+const emits = defineEmits(['updateAnswer']);
+const { emitAnswer } = useAnswer(emits);
 
 const props = defineProps<{
   serialNum: string;

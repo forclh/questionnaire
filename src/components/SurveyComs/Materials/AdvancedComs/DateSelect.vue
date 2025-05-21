@@ -17,6 +17,7 @@
       v-model="dateValue"
       :type="computedStatus.type?.value"
       placeholder="请选择日期"
+      @change="emitAnswer(dateValue)"
     />
   </div>
 </template>
@@ -31,6 +32,10 @@ import {
   getCurrentStatus,
   getStringStatusByCurrentStatus,
 } from '@/utils/index.ts';
+import { useAnswer } from '@/composables';
+
+const emits = defineEmits(['updateAnswer']);
+const { emitAnswer } = useAnswer(emits);
 
 const props = defineProps<{
   serialNum: string;

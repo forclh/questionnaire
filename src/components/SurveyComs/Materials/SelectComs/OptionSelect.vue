@@ -15,7 +15,14 @@
       :descColor="computedStatus.descColor"
     />
     <div>
-      <el-select v-model="selectValue" placeholder="请选择" style="width: 240px" size="large">
+      <el-select
+        v-model="selectValue"
+        placeholder="请选择"
+        style="width: 240px"
+        size="large"
+        @click.stop
+        @change="emitAnswer(selectValue)"
+      >
         <el-option
           v-for="(item, index) in computedStatus.options"
           :key="index"
@@ -37,6 +44,10 @@ import {
   getCurrentStatus,
   getStringStatusByCurrentStatus,
 } from '@/utils/index.ts';
+import { useAnswer } from '@/composables';
+
+const emits = defineEmits(['updateAnswer']);
+const { emitAnswer } = useAnswer(emits);
 
 const props = defineProps<{
   serialNum: string;

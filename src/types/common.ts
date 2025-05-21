@@ -12,3 +12,6 @@ export interface SchemaType {
   id: string;
   status: OptionsStatus | TypeStatus;
 }
+
+// 定义emit类型
+export type EmitType = (event: 'updateAnswer', ...args: any[]) => void;

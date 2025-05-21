@@ -16,7 +16,7 @@
       :descColor="computedStatus.descColor"
     />
     <div class="radio-group">
-      <el-radio-group v-model="radioValue">
+      <el-radio-group v-model="radioValue" @click.stop @change="emitAnswer(radioValue)">
         <el-radio v-for="(item, index) in computedStatus.options" :key="index" :value="item">{{
           item
         }}</el-radio>
@@ -35,11 +35,16 @@ import {
   getCurrentStatus,
   getStringStatusByCurrentStatus,
 } from '@/utils/index.ts';
+import { useAnswer } from '@/composables';
 
 const props = defineProps<{
   serialNum: string;
   status: OptionsStatus;
 }>();
+
+// 通过自定义事件提交答案
+const emits = defineEmits(['updateAnswer']);
+const { emitAnswer } = useAnswer(emits);
 
 const computedStatus = computed(() => ({
   title: getTextStatus(props.status.title),

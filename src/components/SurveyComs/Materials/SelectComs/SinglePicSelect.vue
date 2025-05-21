@@ -15,16 +15,21 @@
       :titleColor="computedStatus.titleColor"
       :descColor="computedStatus.descColor"
     />
-      <el-radio-group v-model="radioValue" class="flex wrap">
-        <el-radio
-          v-for="(item, index) in computedStatus.options"
-          :key="index"
-          :value="item.picTitle"
-          class="picOption flex mb-15"
-        >
-          <PicItem v-bind="{ ...item, index }" />
-        </el-radio>
-      </el-radio-group>
+    <el-radio-group
+      v-model="radioValue"
+      class="flex wrap"
+      @click.stop
+      @change="emitAnswer(radioValue)"
+    >
+      <el-radio
+        v-for="(item, index) in computedStatus.options"
+        :key="index"
+        :value="item.picTitle"
+        class="picOption flex mb-15"
+      >
+        <PicItem v-bind="{ ...item, index }" />
+      </el-radio>
+    </el-radio-group>
   </div>
 </template>
 
@@ -39,11 +44,15 @@ import {
   getPicTitleDescStatusArr,
   getStringStatusByCurrentStatus,
 } from '@/utils/index.ts';
+import { useAnswer } from '@/composables';
 
 const props = defineProps<{
   serialNum: string;
   status: OptionsStatus;
 }>();
+
+const emits = defineEmits(['updateAnswer']);
+const { emitAnswer } = useAnswer(emits);
 
 const computedStatus = computed(() => ({
   title: getTextStatus(props.status.title),
@@ -68,5 +77,4 @@ const radioValue = ref('');
   height: auto;
   flex-direction: column-reverse;
 }
-
 </style>
