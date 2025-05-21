@@ -23,8 +23,11 @@ import LeftSide from '@/views/EditorView/LeftSide/index.vue';
 import RightSide from '@/views/EditorView/RightSide.vue';
 import Center from '@/views/EditorView/Center.vue';
 import { useEditorStore } from '@/stores/useEditor';
-import { computed } from 'vue';
+import { computed, provide } from 'vue';
 import { restoreComponentsStatus } from '@/utils';
+import { updateStatusKey } from '@/types/key';
+import { dispatchStatus } from '@/stores/dispatch';
+import type { PicLink } from '@/types';
 
 const route = useRoute();
 
@@ -42,6 +45,28 @@ if (questionnaireId) {
     }
   });
 }
+
+// 当前选中的问题组件
+const currentCom = computed(() => {
+  return editorStore.questionComs[editorStore.currentQuestionIndex];
+});
+
+// 向子孙提供更新状态的方法
+const updateStatus = (
+  configKey: string,
+  payload?: string | number | PicLink,
+  isShowChange?: Boolean,
+) => {
+  // 修改数据仓库
+  dispatchStatus(editorStore, currentCom.value.status, configKey, payload, isShowChange);
+};
+
+const getLink = (link: PicLink) => {
+  updateStatus('options', link);
+};
+// 向子孙提供更新状态的方法
+provide(updateStatusKey, updateStatus);
+provide('getLink', getLink);
 </script>
 
 <style scoped>

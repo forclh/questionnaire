@@ -50,7 +50,6 @@ export type ComponentMapType = Record<AllComType, VueComType>;
 
 // actions
 export interface Actions {
-  setCurrentMaterialCom: (com: MaterialComType) => void;
   // 公共actions
   setTextStatus: (textProps: TextProps, text: string) => void;
   addOption: (optionsProps: OptionsProps) => void;

@@ -17,31 +17,12 @@ import { computed, provide } from 'vue';
 import { useEditorStore } from '@/stores/useEditor';
 import EditorPanel from '@/components/SurveyComs/EditItems/EditPanel.vue';
 import type { PicLink, EditorStore } from '@/types';
-import { updateStatusKey } from '@/types/key';
-import { dispatchStatus } from '@/stores/dispatch';
 
 const editorStore = useEditorStore() as unknown as EditorStore;
 // 当前选中的问题组件
 const currentCom = computed(() => {
   return editorStore.questionComs[editorStore.currentQuestionIndex];
 });
-
-// 向子孙提供更新状态的方法
-const updateStatus = (
-  configKey: string,
-  payload?: string | number | PicLink,
-  isShowChange?: Boolean,
-) => {
-  // 修改数据仓库
-  dispatchStatus(editorStore, currentCom.value.status, configKey, payload, isShowChange);
-};
-
-const getLink = (link: PicLink) => {
-  updateStatus('options', link);
-};
-// 向子孙提供更新状态的方法
-provide(updateStatusKey, updateStatus);
-provide('getLink', getLink);
 </script>
 
 <style scoped lang="scss">
