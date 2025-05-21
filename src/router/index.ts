@@ -97,6 +97,12 @@ const router = createRouter({
               component: () =>
                 import('@/components/SurveyComs/Materials/AdvancedComs/DateSelect.vue'),
             },
+            {
+              path: 'scoreSelect',
+              name: 'scoreSelect',
+              component: () =>
+                import('@/components/SurveyComs/Materials/AdvancedComs/ScoreSelect.vue'),
+            },
           ],
         },
         {

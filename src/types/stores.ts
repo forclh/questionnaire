@@ -98,6 +98,7 @@ export const QuestionTypeList = [
   'personalInfoAge',
   'personalInfoBirth',
   'dateSelect',
+  'scoreSelect',
 ];
 
 // 判断传入的值是否是题目类型

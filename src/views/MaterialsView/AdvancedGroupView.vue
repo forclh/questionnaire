@@ -6,6 +6,12 @@
       :to="{ name: 'dateSelect' }"
       >日期/时间</router-link
     >
+    <router-link
+      class="link-item mb-15"
+      exact-active-class="link-item-active"
+      :to="{ name: 'scoreSelect' }"
+      >评分</router-link
+    >
   </Layout>
 </template>
 

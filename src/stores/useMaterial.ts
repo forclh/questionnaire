@@ -1,7 +1,7 @@
 // 组件市场中所有组件的状态仓库
 import { defineStore } from 'pinia';
 import { defaultStatusMap } from '@/config/defaultStatus/defaultStatusMap.ts';
-import type {MaterialComType, SchemaType } from '@/types';
+import type { MaterialComType, SchemaType } from '@/types';
 import { updateInitStatus } from '@/utils';
 import {
   setTextStatus,
@@ -54,6 +54,7 @@ export const useMaterialStore = defineStore('materialStore', {
       textNote: defaultStatusMap['textNote'](),
       // 高级题型组件
       dateSelect: defaultStatusMap['dateSelect'](),
+      scoreSelect: defaultStatusMap['scoreSelect'](),
       // 个人信息预设组件
       personalInfoGender: initializedStatus['personalInfoGender'],
       personalInfoName: initializedStatus['personalInfoName'],
@@ -89,8 +90,6 @@ export const useMaterialStore = defineStore('materialStore', {
     setItalic,
     // 修改字体颜色
     setColor,
-    // 修改业务组件中status为文本的属性值
-
     // 设置图片组件的value
     setPicLinkByIndex,
   },

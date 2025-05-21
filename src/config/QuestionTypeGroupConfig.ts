@@ -34,7 +34,7 @@ export const QuestionTypeGroupConfigList = [
     icon: Files,
     questionTypeList: [
       { type: 'dateSelect', name: '日期' },
-      { type: 'scoreInput', name: '评分' },
+      { type: 'scoreSelect', name: '评分' },
     ],
   },
   {

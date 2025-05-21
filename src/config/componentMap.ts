@@ -8,6 +8,7 @@ import MultiPicSelect from '@/components/SurveyComs/Materials/SelectComs/MultiPi
 import TextInput from '@/components/SurveyComs/Materials/InputComs/TextInput.vue';
 import TextNote from '@/components/SurveyComs/Materials/NoteComs/TextNote.vue';
 import DateSelect from '@/components/SurveyComs/Materials/AdvancedComs/DateSelect.vue';
+import ScoreSelect from '@/components/SurveyComs/Materials/AdvancedComs/ScoreSelect.vue';
 // 编辑组件
 import ColorEditor from '@/components/SurveyComs/EditItems/ColorEditor.vue';
 import DateEditor from '@/components/SurveyComs/EditItems/DateEditor.vue';
@@ -34,6 +35,7 @@ export const componentMap: ComponentMapType = {
   textInput: markRaw(TextInput),
   textNote: markRaw(TextNote),
   dateSelect: markRaw(DateSelect),
+  scoreSelect: markRaw(ScoreSelect),
   personalInfoGender: markRaw(SingleSelect),
   personalInfoName: markRaw(TextInput),
   personalInfoIdCard: markRaw(TextInput),
