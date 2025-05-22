@@ -41,7 +41,7 @@ export function getValueStatusArr(props: OptionsProps) {
 }
 
 export function getCurrentStatus(props: OptionsProps) {
-  return props.currentStatus;
+  return props?.currentStatus ?? 0;
 }
 
 export function getStringStatusByCurrentStatus(props: OptionsProps) {
