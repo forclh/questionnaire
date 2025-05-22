@@ -20,6 +20,11 @@ export type QuestionType =
   | 'personalInfoOccupation'
   | 'personalInfoAge'
   | 'personalInfoBirth'
+  | 'personalInfoPhone'
+  | 'personalInfoWeChat'
+  | 'personalInfoQQ'
+  | 'personalInfoEmail'
+  | 'personalInfoAddress'
   | 'dateSelect'
   | 'scoreSelect';
 
@@ -79,12 +84,15 @@ export interface EditorStore extends Actions {
 
 // 题目类型列表
 export const QuestionTypeList = [
+  // 选择
   'singleSelect',
   'multiSelect',
   'singlePicSelect',
   'multiPicSelect',
   'optionSelect',
+  // 文本输入
   'textInput',
+  // 个人信息
   'personalInfoGender',
   'personalInfoName',
   'personalInfoIdCard',
@@ -97,6 +105,13 @@ export const QuestionTypeList = [
   'personalInfoOccupation',
   'personalInfoAge',
   'personalInfoBirth',
+  // 联系方式
+  'personalInfoPhone',
+  'personalInfoWeChat',
+  'personalInfoQQ',
+  'personalInfoEmail',
+  'personalInfoAddress',
+  // 高级题型
   'dateSelect',
   'scoreSelect',
 ];

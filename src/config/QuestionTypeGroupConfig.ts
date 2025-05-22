@@ -48,12 +48,6 @@ export const QuestionTypeGroupConfigList = [
     questionTypeList: [
       { type: 'personalInfoGender', name: '性别' },
       { type: 'personalInfoEducation', name: '学历' },
-    ],
-  },
-  {
-    title: '联系方式',
-    icon: Message,
-    questionTypeList: [
       { type: 'personalInfoName', name: '姓名' },
       { type: 'personalInfoIdCard', name: '身份证' },
       { type: 'personalInfoUniversity', name: '大学' },
@@ -61,11 +55,20 @@ export const QuestionTypeGroupConfigList = [
       { type: 'personalInfoIndustry', name: '行业' },
       { type: 'personalInfoPosition', name: '职位' },
       { type: 'personalInfoCompany', name: '公司' },
-      { type: 'personalInfoGender', name: '性别' },
-      { type: 'personalInfoEducation', name: '学历' },
       { type: 'personalInfoOccupation', name: '职业' },
       { type: 'personalInfoAge', name: '年龄' },
       { type: 'personalInfoBirth', name: '出生日期' },
+    ],
+  },
+  {
+    title: '联系方式',
+    icon: Message,
+    questionTypeList: [
+      { type: 'personalInfoPhone', name: '手机' },
+      { type: 'personalInfoWeChat', name: '微信' },
+      { type: 'personalInfoQQ', name: 'QQ' },
+      { type: 'personalInfoEmail', name: '邮箱' },
+      { type: 'personalInfoAddress', name: '地址' },
     ],
   },
 ];

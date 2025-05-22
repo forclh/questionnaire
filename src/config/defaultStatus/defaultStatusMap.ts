@@ -32,4 +32,9 @@ export const defaultStatusMap = {
   personalInfoAge: singleSelectDefaultStatus,
   dateSelect: dateSelectDefaultStatus,
   personalInfoBirth: dateSelectDefaultStatus,
+  personalInfoPhone: textInputDefaultStatus,
+  personalInfoWeChat: textInputDefaultStatus,
+  personalInfoQQ: textInputDefaultStatus,
+  personalInfoEmail: textInputDefaultStatus,
+  personalInfoAddress: textInputDefaultStatus,
 };

@@ -14,6 +14,7 @@ import {
   setItalic,
   setColor,
 } from '@/stores/actions';
+
 // 记录哪些组件需要初始化
 const keyToInitStatus = [
   'personalInfoGender',
@@ -28,7 +29,13 @@ const keyToInitStatus = [
   'personalInfoOccupation',
   'personalInfoAge',
   'personalInfoBirth',
+  'personalInfoPhone',
+  'personalInfoWeChat',
+  'personalInfoQQ',
+  'personalInfoEmail',
+  'personalInfoAddress',
 ] as MaterialComType[];
+
 // 初始化后的状态对象
 const initializedStatus: { [key: string]: SchemaType } = {};
 keyToInitStatus.forEach((key) => {
@@ -36,6 +43,7 @@ keyToInitStatus.forEach((key) => {
   updateInitStatus(defaultStatus, key);
   initializedStatus[key] = defaultStatus;
 });
+
 export const useMaterialStore = defineStore('materialStore', {
   state: () => ({
     // 当前选中的业务组件
@@ -68,6 +76,12 @@ export const useMaterialStore = defineStore('materialStore', {
       personalInfoOccupation: initializedStatus['personalInfoOccupation'],
       personalInfoAge: initializedStatus['personalInfoAge'],
       personalInfoBirth: initializedStatus['personalInfoBirth'],
+      // 联系方式预设组件
+      personalInfoPhone: initializedStatus['personalInfoPhone'],
+      personalInfoWeChat: initializedStatus['personalInfoWeChat'],
+      personalInfoQQ: initializedStatus['personalInfoQQ'],
+      personalInfoEmail: initializedStatus['personalInfoEmail'],
+      personalInfoAddress: initializedStatus['personalInfoAddress'],
     },
   }),
   actions: {

@@ -134,6 +134,26 @@ export function updateInitStatus(comStatus: SchemaType, newMaterialCom: Material
       comStatus.name = 'personalInfoBirth';
       comStatus.status.title.status = '请选择出生日期';
       break;
+    case 'personalInfoPhone':
+      comStatus.name = 'personalInfoPhone';
+      comStatus.status.title.status = '您的手机号是';
+      break;
+    case 'personalInfoWeChat':
+      comStatus.name = 'personalInfoWeChat';
+      comStatus.status.title.status = '您的微信是';
+      break;
+    case 'personalInfoQQ':
+      comStatus.name = 'personalInfoQQ';
+      comStatus.status.title.status = '您的QQ是';
+      break;
+    case 'personalInfoEmail':
+      comStatus.name = 'personalInfoEmail';
+      comStatus.status.title.status = '您的邮箱是';
+      break;
+    case 'personalInfoAddress':
+      comStatus.name = 'personalInfoAddress';
+      comStatus.status.title.status = '您的地址是';
+      break;
   }
 }
 

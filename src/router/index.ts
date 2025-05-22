@@ -195,6 +195,34 @@ const router = createRouter({
           path: 'contactGroup',
           name: 'contactGroup',
           component: () => import('@/views/MaterialsView/ContactGroupView.vue'),
+          redirect: '/materials/contactGroup/personalInfoWeChat',
+          children: [
+            {
+              path: 'personalInfoPhone',
+              name: 'personalInfoPhone',
+              component: () => import('@/components/SurveyComs/Materials/InputComs/TextInput.vue'),
+            },
+            {
+              path: 'personalInfoWeChat',
+              name: 'personalInfoWeChat',
+              component: () => import('@/components/SurveyComs/Materials/InputComs/TextInput.vue'),
+            },
+            {
+              path: 'personalInfoQQ',
+              name: 'personalInfoQQ',
+              component: () => import('@/components/SurveyComs/Materials/InputComs/TextInput.vue'),
+            },
+            {
+              path: 'personalInfoEmail',
+              name: 'personalInfoEmail',
+              component: () => import('@/components/SurveyComs/Materials/InputComs/TextInput.vue'),
+            },
+            {
+              path: 'personalInfoAddress',
+              name: 'personalInfoAddress',
+              component: () => import('@/components/SurveyComs/Materials/InputComs/TextInput.vue'),
+            },
+          ],
         },
       ],
     },
