@@ -4,7 +4,6 @@
       <!-- 添加图片 -->
       <div class="top flex justify-content-center align-items-center">
         <el-upload
-          class="avatar-uploader"
           action="/api/upload"
           name="image"
           :show-file-list="false"
@@ -12,8 +11,8 @@
           :before-upload="beforeAvatarUpload"
         >
           <img v-if="imageUrl" :src="imageUrl" class="avatar" />
-          <div v-else>
-            <el-icon><Plus /></el-icon>
+          <div v-else class="avatar-uploader-icon">
+            <el-icon :size="30"><Plus /></el-icon>
           </div>
         </el-upload>
       </div>
@@ -128,5 +127,13 @@ const beforeAvatarUpload: UploadProps['beforeUpload'] = (rawFile) => {
   width: 200px;
   height: 200px;
   object-fit: contain;
+}
+
+.avatar-uploader-icon {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

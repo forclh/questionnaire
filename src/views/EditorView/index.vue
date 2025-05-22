@@ -28,6 +28,7 @@ import { restoreComponentsStatus } from '@/utils';
 import { updateStatusKey } from '@/types/key';
 import { dispatchStatus } from '@/stores/dispatch';
 import type { PicLink } from '@/types';
+import { ElMessage } from 'element-plus';
 
 const route = useRoute();
 
@@ -57,6 +58,10 @@ const updateStatus = (
   payload?: string | number | PicLink,
   isShowChange?: Boolean,
 ) => {
+  if (!currentCom.value) {
+    ElMessage.error('请先选择题目');
+    return;
+  }
   // 修改数据仓库
   dispatchStatus(editorStore, currentCom.value.status, configKey, payload, isShowChange);
 };

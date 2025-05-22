@@ -14,12 +14,7 @@
       :titleColor="computedStatus.titleColor"
       :descColor="computedStatus.descColor"
     />
-    <el-checkbox-group
-      v-model="checkList"
-      class="flex wrap"
-      @click.stop
-      @change="emitAnswer(checkList)"
-    >
+    <el-checkbox-group v-model="checkList" class="flex wrap" @change="emitAnswer(checkList)">
       <el-checkbox
         v-for="(item, index) in computedStatus.options"
         :key="index"
