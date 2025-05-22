@@ -10,11 +10,7 @@
       </div>
       <!-- 题型组包含的题型组件列表 -->
       <div class="flex wrap space-between">
-        <QuestionTypeCom
-          v-for="item in questionTypeList"
-          :key="item.type"
-          v-bind="item"
-        />
+        <QuestionTypeCom v-for="item in questionTypeList" :key="item.type" v-bind="item" />
       </div>
     </div>
   </div>

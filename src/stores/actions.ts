@@ -1,6 +1,6 @@
 // 仓库的公共actions
 
-import type { TextProps, OptionsProps, PicLink} from '@/types';
+import type { TextProps, OptionsProps, PicLink } from '@/types';
 import { isStringArr, isPicTitleDescStatusArr } from '@/types';
 
 // 修改业务组件中status为文本的属性值

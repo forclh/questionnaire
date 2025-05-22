@@ -13,11 +13,7 @@
         <span class="tab-item-title mt-5">题型</span>
       </router-link>
       <!-- 大纲 -->
-      <router-link
-        class="tab-item"
-        exact-active-class="tab-show"
-        :to="{ name: 'outline' }"
-      >
+      <router-link class="tab-item" exact-active-class="tab-show" :to="{ name: 'outline' }">
         <el-icon>
           <Document />
         </el-icon>

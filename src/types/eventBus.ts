@@ -2,4 +2,4 @@
 export type EventBusType = {
   scrollToBottom: void;
   scrollToCenter: number;
-}
+};
