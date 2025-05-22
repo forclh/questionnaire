@@ -1,13 +1,16 @@
 <template>
-  <div @click="addQuestionCom" class="question-type-com-container pointer flex justify-content-center align-items-center self-center pl-10 pr-10 mb-10">
-    {{name}}
+  <div
+    @click="addQuestionCom"
+    class="question-type-com-container pointer flex justify-content-center align-items-center self-center pl-10 pr-10 mb-10"
+  >
+    {{ name }}
   </div>
 </template>
 
 <script setup lang="ts">
 import { defaultStatusMap } from '@/config/defaultStatus/defaultStatusMap';
 import { updateInitStatus } from '@/utils';
-import type { MaterialComType } from '@/types';
+import type { MaterialComType, SchemaType } from '@/types';
 import { useEditorStore } from '@/stores/useEditor';
 import { eventBus } from '@/utils/eventBus';
 
@@ -23,7 +26,7 @@ const addQuestionCom = () => {
     return;
   }
   // 根据问题类型获取问题组件的默认状态
-  const defaultStatus = defaultStatusMap[questionType]();
+  const defaultStatus = defaultStatusMap[questionType]() as SchemaType;
   // 更新问题组件的初始状态
   updateInitStatus(defaultStatus, questionType);
   // 添加状态到仓库

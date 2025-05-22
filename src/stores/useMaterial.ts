@@ -32,7 +32,7 @@ const keyToInitStatus = [
 // 初始化后的状态对象
 const initializedStatus: { [key: string]: SchemaType } = {};
 keyToInitStatus.forEach((key) => {
-  const defaultStatus = defaultStatusMap[key]();
+  const defaultStatus = defaultStatusMap[key]() as SchemaType;
   updateInitStatus(defaultStatus, key);
   initializedStatus[key] = defaultStatus;
 });
