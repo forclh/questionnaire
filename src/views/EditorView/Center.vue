@@ -51,7 +51,7 @@ import { useQuestionSerialNumber, useQuestionSelect } from '@/composables';
 import { defaultStatusMap } from '@/config/defaultStatus/defaultStatusMap';
 import { updateInitStatus } from '@/utils';
 import type { MaterialComType, SchemaType } from '@/types';
-
+import { throttle } from '@/utils/throttle';
 // 获取数据仓库
 const editorStore = useEditorStore();
 
@@ -97,23 +97,28 @@ const startDrag = () => {
 
 // 处理拖拽进入
 const handleDragEnter = (event: DragEvent) => {
-  console.log('dragenter');
   event.preventDefault();
   isDragOver.value = true;
 };
 
+// 节流后的拖拽效果设置函数
+const setDragEffect = throttle((dataTransfer: DataTransfer) => {
+  dataTransfer.dropEffect = 'copy';
+}, 100);
+
 // 处理拖拽悬停
 const handleDragOver = (event: DragEvent) => {
-  console.log('dragover');
+  // 立即阻止默认行为，确保 drop 事件能正常触发
   event.preventDefault();
+
+  // 节流设置拖拽效果，避免频繁操作
   if (event.dataTransfer) {
-    event.dataTransfer.dropEffect = 'copy';
+    setDragEffect(event.dataTransfer);
   }
 };
 
 // 处理拖拽离开
 const handleDragLeave = (event: DragEvent) => {
-  console.log('dragleave');
   // 只有当离开整个容器时才设置为false
   if (!centerContainerRef.value?.contains(event.relatedTarget as Node)) {
     isDragOver.value = false;

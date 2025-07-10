@@ -31,7 +31,7 @@ const isDragging = ref(false);
 // 拖拽开始事件
 const handleDragStart = (event: DragEvent) => {
   isDragging.value = true;
-  // 将组件类型信息存储到拖拽数据中
+  // 将组件类型信息存储到拖拽数据中，用于在拖拽结束时（drop）获取组件类型信息
   if (event.dataTransfer) {
     event.dataTransfer.setData(
       'application/json',
@@ -40,6 +40,7 @@ const handleDragStart = (event: DragEvent) => {
         name: props.name,
       }),
     );
+    // 设置拖曳效果
     event.dataTransfer.effectAllowed = 'copy';
   }
 };
