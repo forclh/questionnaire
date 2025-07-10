@@ -34,7 +34,7 @@ import textNoteDefaultStatus from '@/config/defaultStatus/TextNote.ts';
 import { v4 as uuidv4 } from 'uuid';
 import { markRaw } from 'vue';
 
-// 初始化问题组件列表
+// 初始化问题组件列表（有两个说明的默认组件）
 const initQuestionComs = () =>
   [
     Object.assign({}, textNoteDefaultStatus(), {
